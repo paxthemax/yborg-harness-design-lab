@@ -14,13 +14,17 @@ Choose retention and backup policy before collecting sensitive artifacts. Provid
 
 ## Build enough shared understanding
 
-The comprehension agent organizes the system into assets, actors, privileges, states, complete value flows and external dependencies. Review intent and implementation side by side. Correct critical guarantees and record uncertainties; you need not approve a generated explanation of every function before selecting useful work.
+The accepted [comprehension direction](../decisions/DEC-005-comprehension-lensing.md) starts with automated KB seeding and one or more exploration rounds. With the agent, move through purpose → flows → stores → transitions, identifying flow state machines and saving diagrams and conclusions in the KB. Use connected walkthroughs with optional checkpoints, then descend into selected transitions at increasing resolution. Explorations can be repeated, resumed or entered from any audit stage; the [lensing method](harness-comprehension-method.md) proposes the detailed mechanics.
+
+The comprehension agent organizes the system into assets, actors, privileges, states, complete value flows and external dependencies. Review **DESIGNED** and **IMPLEMENTED** behavior side by side at every lens. Start DESIGNED with documentation, then develop it with your input and applicable evidence. Inspect mapped states/transitions, conditions and discrepancies; distinguish missing design evidence, unexamined implementation and examined comparisons with no observed discrepancy. Inferred design candidates retain their provenance and require review; code-derived candidates cannot independently validate conformity. Your clarification cannot overwrite observed implementation. Propose investigations of deviations and of design weaknesses even where both models agree. Correct critical guarantees and record uncertainties; you need not approve a generated explanation of every function before selecting useful work.
 
 An audit unit might be “withdrawal accounting across queue, token transfer and callback,” rather than one source file. Each scoped unit has an owner, risk rationale, planned method, evidence and visible review status. Baseline controls complement these units. A checklist item with no evidence is an open gap, regardless of how many files were visited.
 
 When documentation and code disagree, preserve both. Your answer can establish intended behavior or an assumption, but cannot change what the code currently does. Unknown intent can remain a conditional branch in the model until the affected conclusion requires a decision.
 
 **Exit:** enough reviewed guarantees and flow information to choose the next batch, with unresolved boundaries still visible.
+
+The operator selected investigation after broad orientation and review of the relevant flow. You can approve that flow's investigation without waiting for every critical flow to be reviewed; other gaps remain visible and exploration continues alongside investigation. Ordinary batch authorization and the relevant semantic/evidence checks still apply.
 
 ## Approve a small batch
 

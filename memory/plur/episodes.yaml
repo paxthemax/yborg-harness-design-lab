@@ -110,3 +110,89 @@
     research/harness-sprint-verification.md. Reviewed standing memory without
     changing accepted policy. DEC-003/Q-008 architecture acceptance and runtime
     implementation/validation remain separate future work.
+
+- id: EP-LAB-2026-1001-008
+  timestamp: '2026-10-01T17:39:23Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: harness-diagram-html-release-2026-10-01
+  tags: [operator-request, diagrams, html, png]
+  summary: >-
+    Replaced the three design SVG exports with standalone HTML/CSS diagrams and
+    matching PNG releases at the operator's request. Simplified architecture into
+    authority layers, investigation into a main path and outcome/return sections,
+    and premise changes into six chronological steps. Updated document links and
+    retained original Mermaid sources as historical references. Visually inspected
+    all three PNGs for readable text and complete framing. See
+    design/diagrams/README.md and memory/session.md. Reviewed standing memory;
+    no design acceptance or runtime implementation is inferred.
+
+- id: EP-LAB-2026-1001-009
+  timestamp: '2026-10-01T17:41:43Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: comprehension-review-2026-10-01
+  tags: [astra-max-review, comprehension, operator-questions]
+  summary: >-
+    At the operator's explicit request, delegated a twofold comprehension review
+    to Astra at max reasoning: reliable engagement knowledge construction and
+    auditor internalization. Delivered research/comprehension-methodology-review.md,
+    design/harness-comprehension-method.md and SRC-023–028. Recorded Q-009–010
+    for interaction/depth preferences and provisional K-006 guidance. Reviewed
+    existing memory; standing policies remain applicable and the new synthesis
+    remains unreviewed. The proposal preserves human authority, isolation and
+    existing roles. No implementation or learning-effect trial occurred; core
+    integration awaits operator disposition. Concurrent unrelated edits were
+    preserved. Timestamp records capture rather than exact task completion.
+
+- id: EP-LAB-2026-1001-010
+  timestamp: '2026-10-01T17:57:03Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: comprehension-lensing-second-pass-2026-10-01
+  tags: [astra-max-review, lensing, state-machines, operator-decision]
+  summary: >-
+    Recorded the operator's 1A selection and repeatable lensing requirements
+    in DEC-005, then requested a second Astra Max pass. Revised the proposed
+    comprehension method around automated provisional intake rounds, purpose,
+    flows, stores and progressively refined transitions; added source-linked
+    state diagrams, exploration recipes, checkpoints and freshness handling.
+    Research preserves the first pass and adds EVM semantics checks SRC-029–032.
+    Q-009 is resolved; Q-010 investigation-start policy remains unanswered.
+    Inspected 92 local links and anchors without errors and checked unique
+    memory IDs. Corrected the comprehension episode ID after a concurrent
+    diagram episode used the same number; preserved both events. Reviewed
+    standing memory; accepted requirements and provisional synthesis remain
+    distinct. No harness code, runtime or learning-effect trial was produced.
+
+- id: EP-LAB-2026-1001-011
+  timestamp: '2026-10-01T18:03:43Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: comprehension-start-policy-2026-10-01
+  tags: [operator-decision, comprehension, workflow-integration]
+  summary: >-
+    The operator selected A after the second Astra Max report, resolving Q-010:
+    investigations may begin after broad orientation and review of the relevant
+    flow while exploration continues alongside them and other gaps stay visible.
+    Updated DEC-005, the question register, comprehension method, product and
+    auditor guide, index and handover. Preserved review history with a subsequent
+    disposition and updated the accepted lensing engram to version 2. Standing
+    memory remains applicable. Checked updated document links and unique memory
+    IDs. Detailed mechanisms and DEC-003 architecture remain proposed; no
+    harness code or runtime validation was performed.
+
+- id: EP-LAB-2026-1001-012
+  timestamp: '2026-10-01T18:32:48.390621+00:00'
+  agent: codex
+  channel: design-lab-session
+  session_id: designed-implemented-approval-2026-10-01
+  tags: [operator-decision, designed, implemented, lensing]
+  summary: >-
+    Recorded DEC-006 and resolved Q-011 after the requested Astra Max
+    consultation, operator clarification and approval. Integrated distinct
+    behavioral models, documentation-first auditor-supported design construction,
+    comparison at every lens, correspondence and discrepancy records, coverage
+    and evaluation scenarios. Preserved consultation rationale and updated the
+    handover. Reviewed memory: DEC-005 remains compatible, and earlier synthesis
+    stays provisional. Overall architecture remains proposed. No runtime built.

@@ -86,3 +86,31 @@ Accessed **2026-10-01** for this design sprint. Each record covers only the name
 | SRC-022 | [OpenZeppelin EVMbench critique](https://www.openzeppelin.com/news/openai-evmbench-audit), 2026-03-02; dataset quality | CASE; disputes some benchmark ground-truth labels | Selected check of SRC-001/S39; subset critique, disputed cases not rerun or checked against subsequent dataset changes |
 
 **Intake disposition for SRC-006–022:** completed for the named documentation and research questions; implementation behavior, procurement, licensing and quantitative performance remain unverified. [Research synthesis](../research/harness-design-sprint.md) identifies the resulting proposals and evidence gaps.
+
+## Comprehension review primary sources
+
+Accessed **2026-10-01** for the [comprehension review](../research/comprehension-methodology-review.md). These studies motivate proposed mechanisms; none evaluates this harness, establishes expert-audit learning gains, or supports ADHD-specific claims. Inspection was selective and no experiment was replicated.
+
+| ID | Primary source and inspected locator | Class and useful observation | Verification limits and disposition |
+|---|---|---|---|
+| SRC-023 | [Sillito, Murphy and De Volder, Questions Programmers Ask During Software Evolution Tasks](https://www.cs.ubc.ca/~murphy/papers/other/asking-answering-fse06.pdf), FSE 2006; abstract and sections 6–7 | STUDY; linked information needs and difficulty integrating tool answers | Qualitative maintenance studies, short sessions, task/tool dependence; no auditing effectiveness claim |
+| SRC-024 | [Karpicke and Blunt, Retrieval Practice Produces More Learning than Elaborative Studying with Concept Mapping](https://learninglab.psych.purdue.edu/downloads/2011/2011_Karpicke_Blunt_Science.pdf), Science 331, 772–775 (2011), DOI 10.1126/science.1199327; experiments 1–2 | STUDY; delayed conceptual benefits of retrieval in the studied learning conditions | Science-text learning, not expert auditing; does not discredit diagrams as navigation aids. Yale mirror failed; author's Purdue copy was inspected |
+| SRC-025 | [Chi, de Leeuw, Chiu and LaVancher, Eliciting Self-Explanations Improves Understanding](https://education.asu.edu/sites/g/files/litvpz656/files/lcl/chideleeuwchiulavancher_3.pdf), Cognitive Science 18, 439–477 (1994); abstract and method | STUDY; prompted causal explanation and improved understanding in the study | Small school-age sample and circulatory-system material; expert-audit transfer untested |
+| SRC-026 | [Mayer and Chandler, When Learning Is Just a Click Away](https://tecfa.unige.ch/tecfa/teaching/methodo/Mayer_Chandler01.pdf), Journal of Educational Psychology 93, 390–397 (2001), DOI 10.1037/0022-0663.93.2.390; indexed abstract | STUDY; learner-controlled animation segments improved transfer but not retention in two experiments | Abstract-level intake; served PDF yielded no extracted text. No optimal pacing, audit-domain or ADHD claim |
+| SRC-027 | [Buçinca, Malaya and Gajos, To Trust or to Think](https://www.eecs.harvard.edu/~kgajos/papers/2021/bucinca21trust.pdf), PACM HCI 5, CSCW1, article 188 (2021); task and discussion | STUDY; lower overreliance with forcing interventions, acceptability costs and no significant overall performance advantage | Nutrition decisions with simulated assistance; does not justify universal forced interaction or personal profiling |
+| SRC-028 | [Vasconcelos et al., Explanations Can Reduce Overreliance on AI Systems During Decision-Making](https://arxiv.org/pdf/2212.06823v2), arXiv v2, 2023-01-26 / CSCW 2023; abstract, study summaries and section 10.4 | STUDY; verification costs/benefits influence use of explanations | Controlled low-stakes mazes, crowd workers and ideal explanations; generalization to open-ended expert work remains unknown |
+
+**Intake disposition for SRC-023–028:** completed for the named mechanism review, with SRC-026 limited to its abstract. The [proposed method](../design/harness-comprehension-method.md) contains design inferences rather than accepted policy or measured results.
+
+## Lensing and EVM modeling sources
+
+Accessed **2026-10-01** for the [second comprehension pass](../research/comprehension-methodology-review.md#second-pass-lensing-and-state-machines). These are selected language/EVM semantics checks; representation and exploration contracts remain proposed. The inspected documentation version does not select the compiler or hardfork for an engagement.
+
+| ID | Primary source and inspected locator | Class and useful observation | Verification limits and disposition |
+|---|---|---|---|
+| SRC-029 | [Solidity 0.8.30 control structures](https://docs.soliditylang.org/en/v0.8.30/control-structures.html), external calls and error handling | DOC; shared transaction, callbacks and handled/propagated failure | Documentation inspection only; target wrappers, guards and reachable paths require their own evidence |
+| SRC-030 | [Solidity 0.8.30 introduction](https://docs.soliditylang.org/en/v0.8.30/introduction-to-smart-contracts.html), gas, storage/memory/stack, message calls and delegatecall | DOC; data lifetimes and code/storage context differ | Does not identify any engagement's actual storage, proxy target or fee semantics |
+| SRC-031 | [EIP-1153](https://eips.ethereum.org/EIPS/eip-1153), specification | DOC; transient storage lifetime, ownership and revert behavior | Applicability depends on target hardfork/tool support; no tool conformance trial |
+| SRC-032 | [EIP-140](https://eips.ethereum.org/EIPS/eip-140), motivation and specification | DOC; execution rollback including logs | Call/transaction outcomes still need target-specific propagation and handling analysis |
+
+**Intake disposition for SRC-029–032:** complete for the named semantics review. No runtime behavior, deployment mapping, formal refinement proof or diagram implementation was verified.

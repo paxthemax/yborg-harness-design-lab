@@ -15,6 +15,9 @@ Every record has a stable engagement-scoped ID, type, schema version, revision, 
 | Engagement | Owner; audit purpose; ecosystem/chain; scope/exclusions; target and dependency identities; threat model; data policy; severity rubric; budget; evidence policy; closure status |
 | Target snapshot | Commit when available plus content hashes; dirty/untracked included files; dependencies/remappings; effective compiler, optimizer and EVM settings; build receipt; deployed addresses, proxy implementations and configuration if claimed; fork chain/block number/hash and source retrieval provenance |
 | System statement | Kind: intent, observed implementation, assumption, guarantee, or unknown; statement; source anchors; applicability; supporting/contradicting evidence; review status and owner |
+| Behavioral correspondence | Exact DESIGNED/IMPLEMENTED statement revisions or explicit missing side; audit unit/lens; one-to-many mapping; conditions, assumptions and abstraction limits; mapping evidence and review status |
+| Behavioral comparison | Correspondence revisions; examined behavior and bounds; coverage: missing-design, unexamined-implementation, partial, or examined; result: unresolved, discrepancy, or no-discrepancy-observed; supporting/refuting evidence; uncertainty; owner and next action |
+| Behavioral discrepancy | Comparison and claim revisions; deviation or unmatched behavior; triggering conditions; evidence support and uncertainty; proposed distinguishing check; linked questions/investigations; human disposition and freshness separately |
 | Audit unit | Complete flow, guarantee, boundary, or component; entry points and state writers; dependencies; risk rationale; planned methods; review status; evidence and explicit gaps |
 | Question | One unresolved issue; conflicting facts; answer source sought; options and consequences; recommendation; owner; dependency blockers; status and next action |
 | Batch authorization | Human decision; exact scope/model revisions; admitted questions/methods; worker/tool capabilities; egress policy; spending/runtime/concurrency/child limits; expiry, cancellation and interrupt conditions |
@@ -27,6 +30,8 @@ Every record has a stable engagement-scoped ID, type, schema version, revision, 
 | Report manifest | Exact included record/artifact revisions; report hash; gaps/unresolved items; audience/redaction policy; human approval; export receipt |
 
 The context manifest records prompt/template revisions, selected memories and documents, prior outputs intentionally withheld, model/provider identifiers actually returned, and relevant configuration. Record compact reasons and tool-visible work, not a requirement to expose a model's private reasoning. If a provider cannot expose immutable model identity, record that limitation rather than promising identical future generation.
+
+DESIGNED and IMPLEMENTED are separately inspectable views over attributed system statements, not replacements for the existing statement kinds. Statements identify their model affiliation and origin (documented claim, auditor clarification, inferred candidate, adopted assumption, source analysis or execution observation). Shared assumptions may support both with explicit dependencies. Comparison and discrepancy records follow the same write, human-approval, retrieval and invalidation rules as other semantic records; agents may submit provisional records, but cannot approve consequential semantics. Both model revisions and correspondence limits must survive context construction and export.
 
 ## Shared knowledge and memory
 
@@ -59,9 +64,9 @@ The tool broker and receipt collector run outside both the agent sandbox and the
 
 Use separate fields for work state, disposition, evidence quality, and freshness. Combining these into one “verified” label conceals important distinctions.
 
-![Investigation work states and human dispositions](diagrams/investigation-lifecycle.svg)
+![Investigation work states and human dispositions](diagrams/investigation-lifecycle.png)
 
-[Editable source](diagrams/investigation-lifecycle.mmd).
+[Open the HTML diagram](diagrams/investigation-lifecycle.html).
 
 | From and trigger | Result | Authority and guard |
 |---|---|---|
@@ -121,9 +126,9 @@ On a revision change, create a new snapshot. Mark direct dependents and their tr
 
 The dependency map is itself incomplete. An unresolved dynamic call, assembly, missing edge, unknown config influence or unexplained analysis mismatch triggers conservative invalidation of the affected unit and, when its boundary cannot be established, the whole engagement view. The auditor reviews the impact summary. “No detected dependency” is not proof of irrelevance; retaining a conclusion across snapshots needs recorded justification and any necessary rechecks.
 
-![Changed premise and review sequence](diagrams/premise-change-flow.svg)
+![Changed premise and review sequence](diagrams/premise-change-flow.png)
 
-[Editable source](diagrams/premise-change-flow.mmd). No automatic monitoring of live deployments is promised in v1. Refresh external configuration and fork identity at explicit intake/revalidation points; reports state their observation time and block. A later source or deployment revision is not covered until reviewed.
+[Open the HTML diagram](diagrams/premise-change-flow.html). No automatic monitoring of live deployments is promised in v1. Refresh external configuration and fork identity at explicit intake/revalidation points; reports state their observation time and block. A later source or deployment revision is not covered until reviewed.
 
 ## Replay and semantic validity
 

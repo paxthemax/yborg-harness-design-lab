@@ -1,6 +1,6 @@
 # Design questions and answers
 
-Q-001–003 were resolved by the **lab operator** on **2026-10-01** in **DEC-001**. Q-004–006 were resolved in **DEC-002** and Q-007 in **DEC-004** during the harness design sprint. Q-008 remains proposed. Recommendations remain distinct from accepted choices.
+Q-001–003 were resolved by the **lab operator** on **2026-10-01** in **DEC-001**. Q-004–006 were resolved in **DEC-002** and Q-007 in **DEC-004** during the harness design sprint. Q-009–010 are resolved in **DEC-005**. Q-008 remains proposed. Recommendations remain distinct from accepted choices.
 
 ## Q-001 — Store placement and sharing
 
@@ -81,3 +81,35 @@ If a serious issue has a convincing code-based argument but a runnable PoC is im
 Should the first harness use the [evidence workbench proposal](../design/audit-harness.md), with property and scenario work as methods over shared records? [DEC-003](../decisions/DEC-003-harness-architecture-proposal.md) records alternatives, rationale and costs. This review concerns the concrete architecture, not permission to perform the already-requested design sprint.
 
 **Owner:** lab operator. **Next action:** review, amend or accept the proposal. Engine, model/vendor and sandbox selection remain later compatibility/procurement choices; engagement budgets and data policies are intake decisions.
+
+## Q-009 — Comprehension interaction default
+
+**Status:** resolved by the lab operator on 2026-10-01 in [DEC-005](../decisions/DEC-005-comprehension-lensing.md).
+
+**Selected:** connected walkthrough with optional checkpoints, by the operator's answer “1A.” The subsequent feedback adds repeatable state-machine lensing requirements; it does not accept all proposed implementation mechanisms.
+
+Should the default be a connected walkthrough with optional checkpoints, prediction-first dialogue, or a concise briefing with learning prompts only on request?
+
+**Recommendation:** connected walkthrough with optional checkpoints. This fits the requested short, flowing explanation while offering opportunities for active reconstruction. Prediction-first adds interaction and effort; briefing-first is quicker to consume but gives less direct indication of internalization. All modes retain source access and ordinary semantic decisions. Learning responses never approve findings or prove security.
+
+**Owner:** lab operator. **Next action:** apply the selected interaction to the second-pass lensing method. This choice does not accept the whole architecture.
+
+## Q-010 — Comprehension depth before investigation
+
+**Status:** resolved by the lab operator on 2026-10-01 in [DEC-005](../decisions/DEC-005-comprehension-lensing.md).
+
+**Selected:** broad orientation plus review of the relevant flow before investigation, by the operator's answer “A” after the second Astra Max pass. Exploration continues alongside investigation; other scope gaps stay visible.
+
+Should investigation start after broad system orientation and reviewed understanding of the selected flow, or wait until all operator-defined critical flows have been reviewed?
+
+**Recommendation:** broad orientation plus one reviewed flow at a time. It enables earlier useful investigations while keeping unmodeled boundaries and dependencies visible. Reviewing all critical flows first gives broader upfront internalization but delays investigation. Both require the ordinary semantic/evidence checks for the selected question; neither implies complete coverage or demands a quiz.
+
+**Owner:** lab operator. **Next action:** apply the accepted start policy in the comprehension workflow and batch proposals. Ordinary batch authorization and relevant semantic/evidence checks still apply.
+
+## Q-011 — Missing DESIGNED behavior
+
+**Status:** resolved by the lab operator on 2026-10-01 in [DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md).
+
+**Selected:** documentation-first candidate reconstruction, developed substantially with auditor input and further applicable evidence. Alternative: leave missing design unresolved until design evidence or explicit clarification supplies it. Reconstructed claims remain attributed and provisional; implementation-derived design cannot independently validate that implementation. The Astra Max consultation reported no further consequential questions before operator approval.
+
+**Owner:** lab operator. **Next action:** apply the accepted comparison process and evaluate its future runtime scenarios. Overall architecture acceptance remains Q-008.

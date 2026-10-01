@@ -83,3 +83,18 @@ Initial adoption requires all authority/isolation/recovery scenarios to meet the
 Improve the harness through a versioned loop: record a failure or correction; identify whether it came from context, planning, retrieval, permissions, tools, experiment semantics or human presentation; propose one change; try it on development cases; evaluate on held-out cases; compare useful outcomes and review burden; then retain or roll back the change. Preserve the old behavior and rationale.
 
 Automatic learning may capture a provisional, source-backed lesson. Changes to standing workflow rules, permission policy, evidence sufficiency, or report semantics require an operator disposition. Recursive improvement here means improving procedures, prompts, retrieval and tool integrations, not model training or training-data preparation. Prevent feedback from rewriting evaluation labels merely to favor the new workflow; disputed ground truth needs a separate review record.
+
+## DESIGNED and IMPLEMENTED comparison scenarios
+
+Under [DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md), future evaluation includes:
+
+- A documented payout guarantee violated only by a caught transfer failure; discover and preserve the conditional discrepancy.
+- An unexpected privileged transition with no design counterpart; distinguish missing design evidence from a confirmed violation.
+- Required designed behavior with no located implementation; distinguish absent behavior from unexamined code.
+- Equivalent behavior with different abstractions or several transactions per designed transition; avoid a false discrepancy.
+- Code and project tests sharing a mistaken assumption; code-derived design supplies no independent conformity evidence.
+- DESIGNED and IMPLEMENTED agreeing on unsafe behavior; retain the design-risk investigation route.
+- Incomplete, conflicting or outdated documentation refined through auditor input and applicable evidence; preserve the previous baseline and rationale.
+- A mismatch exposed only by deeper lensing, then affected by a design or code change; mark dependent comparisons and investigations stale.
+
+Report correct discrepancy discovery, misleading discrepancy reports, unresolved comparison gaps, human review effort and change handling. No observed discrepancy is bounded to examined behavior and does not establish security. These scenarios are proposed runtime checks, not executed tests.

@@ -444,3 +444,102 @@
       approved_by: null
       approved_on: null
       stale_if: ["Tool result semantics, property model or selected adequacy policy changes."]
+
+- id: ENG-LAB-2026-1001-014
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    Evaluate source support and auditor understanding separately. Optional
+    causal reconstruction may expose agent or auditor errors; it does not
+    replace semantic review, evidence checks or finding adjudication.
+  rationale: "The comprehension review separates learning, reliance and audit evidence outcomes."
+  source: "K-006; SRC-024, SRC-027 and SRC-028 with expert-audit transfer limits"
+  claim_class: asserted
+  domain: lab.harness.comprehension
+  tags: [comprehension, evidence, auditor, proposal]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: kb/claims/K-006-comprehension-and-evidence.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [K-006, SRC-024, SRC-027, SRC-028, Q-009, Q-010]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["Expert-audit trials establish different comprehension or reliance effects."]
+
+- id: ENG-LAB-2026-1001-015
+  version: 2
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: true
+  statement: >-
+    Comprehension uses connected walkthroughs with optional checkpoints.
+    Intake automatically seeds engagement knowledge and prepares repeatable
+    human-agent lensing rounds: system purpose, flows, stores and progressively
+    refined transitions. Model flows as state machines with KB diagrams;
+    explorations update conclusions and can run at any time. Investigation may
+    start after broad orientation and review of its relevant flow while
+    exploration continues alongside it.
+  rationale: "The operator selected 1A, supplied lensing requirements and then selected Q-010 option A."
+  source: "DEC-005: operator answer and comprehension lensing feedback"
+  claim_class: documented
+  domain: lab.harness.comprehension
+  tags: [lensing, state-machines, knowledge-base, operator-decision]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-005-comprehension-lensing.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-005, Q-009, Q-010]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes comprehension requirements or interaction preference."]
+
+- id: ENG-LAB-2026-1001-016
+  version: 1
+  status: active
+  type: behavioral
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Maintain distinct DESIGNED and IMPLEMENTED behavior models and compare
+    them at every lens. Build DESIGNED from documentation first, then develop
+    it substantially with auditor input and applicable evidence. Preserve
+    reconstruction lineage, correspondence, coverage and discrepancies;
+    investigate implementation deviations and design weaknesses.
+  rationale: "The operator approved the clarified Astra Max process recommendation."
+  source: "DEC-006: accepted process direction and Q-011 answer"
+  claim_class: documented
+  domain: lab.harness.comprehension
+  tags: [designed, implemented, comparison, operator-decision]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-006-designed-and-implemented-behavior.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-006, Q-011]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the behavior-model comparison process."]

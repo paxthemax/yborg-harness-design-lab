@@ -15,11 +15,14 @@ This is the lab's map of research and design knowledge. Start with the [harness 
 | [K-005](claims/K-005-property-adequacy.md) | Property adequacy differs from tool success |
 | [DEC-001](../decisions/DEC-001-knowledge-and-memory.md) | Accepted storage, learning, and retrieval choices |
 | [DEC-002](../decisions/DEC-002-harness-operating-envelope.md) and [DEC-004](../decisions/DEC-004-confirmation-evidence-policy.md) | Accepted harness envelope and alternative evidence policy |
+| [DEC-005](../decisions/DEC-005-comprehension-lensing.md) | Accepted walkthrough default, repeatable state-machine lensing requirements and investigation-start policy; detailed method remains under review |
 | [DEC-003](../decisions/DEC-003-harness-architecture-proposal.md) | Proposed architecture, options and rationale |
-| [Q-001–008](questions.md) | Seven resolved questions and the proposed architecture review |
+| [Question register](questions.md) | Accepted choices and proposed architecture review |
 | [Harness sprint](../research/harness-design-sprint.md) | Report and diagram extraction, primary research, trade-offs and walkthroughs |
 | [Component contracts](../design/harness-interface-contracts.md) and [auditor guide](../design/harness-auditor-guide.md) | Integration boundaries, artifact handoff and the complete human workflow |
 | [Specification completion audit](../research/harness-specification-completeness.md) | Coverage of the repository scope, accepted choices, and every functional/non-functional requirement |
+| [Comprehension review](../research/comprehension-methodology-review.md) and [lensing method](../design/harness-comprehension-method.md) | Two Astra Max passes on agent knowledge construction and auditor internalization; Q-009–010 resolved |
+| [K-006](claims/K-006-comprehension-and-evidence.md) | Model support, human understanding and security adjudication are distinct outcomes |
 
 The three reports were read and all eleven diagrams visually inspected for the harness sprint. Selected external citations were checked; the register identifies exactly which ones and their limits. This is selective extraction, not exhaustive revalidation of every imported assertion. The primary harness architecture remains proposed.
 
@@ -60,3 +63,5 @@ Read the [PLUR store guide](../memory/plur/README.md) before writing memories. K
 When retrieving a disputed or stale claim, bring its limitations and competing evidence into context. Before making a consequential design assertion, read the grounding document and its current disposition. If the PLUR engine is unavailable, read the files directly and use `rg` for locators.
 
 When a source or premise changes, search its ID through the lab, mark dependent cards for review, and examine related decisions and specifications. Keep unresolved trade-offs visible for the operator.
+
+[DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md) accepts documentation-first DESIGNED behavior developed with auditor input, distinct IMPLEMENTED behavior and comparison during every lens. [The consultation](../research/designed-implemented-consultation.md) retains recommendations, the resolved clarification and rationale.

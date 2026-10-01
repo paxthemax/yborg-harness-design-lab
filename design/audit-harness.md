@@ -1,6 +1,6 @@
 # Human led EVM audit harness proposal
 
-Status: **proposed design**, 2026-10-01. Author: **Codex**. [DEC-002](../decisions/DEC-002-harness-operating-envelope.md) accepts Solidity/EVM first, small auditor-approved investigation batches, and a local workspace with approved cloud AI providers. [DEC-004](../decisions/DEC-004-confirmation-evidence-policy.md) accepts justified alternative evidence for confirmation. Other architectural choices below are recommendations for review. [DEC-001](../decisions/DEC-001-knowledge-and-memory.md) continues to govern the design lab's separate memory.
+Status: **proposed design**, 2026-10-01. Author: **Codex**. [DEC-002](../decisions/DEC-002-harness-operating-envelope.md) accepts Solidity/EVM first, small auditor-approved investigation batches, and a local workspace with approved cloud AI providers. [DEC-004](../decisions/DEC-004-confirmation-evidence-policy.md) accepts justified alternative evidence for confirmation. [DEC-005](../decisions/DEC-005-comprehension-lensing.md) accepts repeatable state-machine lensing, connected walkthroughs and investigation after broad orientation and review of the relevant flow. Other architectural choices below are recommendations for review. [DEC-001](../decisions/DEC-001-knowledge-and-memory.md) continues to govern the design lab's separate memory.
 
 Build a persistent audit workspace in which one human auditor directs agents toward precise security questions, checks their evidence, and decides what becomes a finding. Organize work around protocol guarantees and value flows. Use hypotheses, property campaigns, and adversarial scenarios as three investigation methods over the same records and execution controls.
 
@@ -14,6 +14,7 @@ The proposed product is an **evidence workbench**: it should make the next usefu
 | [State and execution](harness-state-and-execution.md) | Records, transitions, permissions, isolation, recovery, memory, and invalidation |
 | [Component and artifact contracts](harness-interface-contracts.md) | Requests, errors, adapter boundaries, reconciliation, export and import behavior |
 | [Auditor guide](harness-auditor-guide.md) | Intake through closure, decision packets, exceptions, interruption and interface states |
+| [Comprehension lenses](harness-comprehension-method.md) | Accepted lensing requirements and proposed state-machine, diagram and exploration mechanics |
 | [Requirements](harness-requirements.md) | Functional and non-functional requirements with observable acceptance scenarios |
 | [Evaluation](harness-evaluation.md) | Evidence quality, pilot design, metrics, and controlled improvement |
 | [Research and rationale](../research/harness-design-sprint.md) | All imported diagrams, selected primary-source checks, new research, alternatives, and limits |
@@ -32,9 +33,9 @@ The harness assists manual comprehension, analysis, testing, and reporting. Mode
 
 ## Proposed architecture
 
-![Proposed harness component and trust boundaries](diagrams/harness-architecture.svg)
+![Proposed harness component and trust boundaries](diagrams/harness-architecture.png)
 
-[Editable diagram source](diagrams/harness-architecture.mmd). Arrows show permitted information paths, not unrestricted file or network access. Components may begin as modules in a local application; the diagram does not require a service fleet.
+[Open the HTML diagram](diagrams/harness-architecture.html). Labeled handoffs show permitted information paths, not unrestricted file or network access. Components may begin as modules in a local application; the diagram does not require a service fleet.
 
 | Component | Responsibility and boundary |
 |---|---|
@@ -88,6 +89,10 @@ An initial discovery pass can withhold sibling hypotheses and historical finding
 These stages can overlap across audit units. An uncertain oracle assumption should block only conclusions that require it; unrelated authorization work can continue. A new finding can reopen the model or a prior batch. The auditor may skip a method with a recorded reason; skipping is visible as a coverage limitation.
 
 Comprehension ends when the auditor can use the model to select useful investigations for a unit, not when every function has a generated explanation. The system must still register all scoped units and unresolved boundaries so that selective depth does not look like complete review.
+
+Under DEC-005, intake automatically seeds the engagement KB and prepares one or more exploration rounds. Human and agent explore purpose, flows, stores and transitions at increasing resolution, modeling flows as state machines with KB diagrams. Connected walkthroughs offer optional checkpoints; repeatable explorations update conclusions and remain available throughout the audit. Investigation may begin after broad orientation and review of the relevant flow, while other gaps remain visible and exploration continues alongside it. The [lensing method](harness-comprehension-method.md) proposes detailed seeding, refinement, persistence and diagram contracts; those mechanisms and the wider architecture remain under review.
+
+Under [DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md), comprehension maintains separately inspectable **DESIGNED** and **IMPLEMENTED** behavior models. DESIGNED begins with documentation and develops substantially through auditor input and applicable evidence. Every lens compares both, preserving semantic correspondences, discrepancies and comparison gaps as investigation inputs. Agreement leaves design weaknesses open to investigation. The [comparison process](harness-comprehension-method.md#designed-and-implemented-behavior) specifies reconstruction safeguards, presentation and change handling.
 
 ## Interaction and question design
 
