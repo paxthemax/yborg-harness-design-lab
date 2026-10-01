@@ -1,0 +1,18 @@
+# Selected policy (DEC-001), inspected against PLUR source 434ca65 (0.21.0).
+# These settings do not prevent explicit writes or host-specific behavior.
+backend: yaml
+index: false
+embeddings:
+  enabled: false
+auto_learn: true
+auto_capture: true
+auto_route_scope: false
+unscoped_default: local
+stores: []
+allow_secrets: false
+decay_enabled: true
+injection_budget: 2000
+recurrence:
+  max_commitment: decided
+profile:
+  enabled: false

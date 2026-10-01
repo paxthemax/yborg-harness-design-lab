@@ -1,0 +1,26 @@
+{
+  "theme": "base",
+  "htmlLabels": false,
+  "themeVariables": {
+    "fontFamily": "Arial, sans-serif",
+    "fontSize": "16px",
+    "primaryColor": "#eaf2ff",
+    "primaryTextColor": "#172b4d",
+    "primaryBorderColor": "#49688f",
+    "lineColor": "#49688f",
+    "secondaryColor": "#edf8f1",
+    "tertiaryColor": "#fff8e7"
+  },
+  "flowchart": {
+    "htmlLabels": false,
+    "curve": "linear",
+    "nodeSpacing": 28,
+    "rankSpacing": 38
+  },
+  "sequence": {
+    "width": 190,
+    "wrap": true,
+    "actorMargin": 75,
+    "messageMargin": 36
+  }
+}

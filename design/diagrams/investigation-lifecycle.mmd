@@ -1,0 +1,15 @@
+flowchart TD
+    P["Proposed question"] -->|"human batch authorization"| Q["Queued"]
+    Q -->|"controller grants attempt"| R["Running"]
+    R --> E["Ready for human review"]
+    R --> B["Blocked, failed or cancelled\nUnresolved with partial evidence"]
+    B -->|"blocker resolved and authorization current"| Q
+    E -->|"human requests more work"| Q
+    E --> D["Human disposition"]
+    D --> A["Accepted with evidence policy satisfied"]
+    D --> N["Rejected with refutation"]
+    D --> U["Disputed or deferred\nUnresolved in closure review"]
+    A --> S["Relevant change: applicability stale"]
+    N --> S
+    U --> S
+    S -->|"review and reauthorize"| Q

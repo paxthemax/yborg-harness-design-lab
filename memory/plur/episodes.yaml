@@ -1,0 +1,112 @@
+# Initial event recorded from the actual operator clarification.
+- id: EP-LAB-2026-1001-001
+  timestamp: '2026-10-01T15:43:58Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: lab-knowledge-memory-2026-10-01
+  tags: [scope, operator-clarification, plur]
+  summary: >-
+    Recorded the operator's clarification to focus the knowledge and memory design
+    on this design lab first. PLUR was requested as substrate and guide. See
+    memory/session.md and decisions/DEC-001-knowledge-and-memory.md; the latter's
+    implementation choices remain proposed. This timestamp records capture,
+    not the exact time of the operator's message.
+
+- id: EP-LAB-2026-1001-002
+  timestamp: '2026-10-01T15:46:08Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: lab-knowledge-memory-2026-10-01
+  tags: [design-delivery, schema-inspection, independent-review]
+  summary: >-
+    Recorded completion of the lab knowledge and memory proposal and starter
+    records. Five engrams matched the pinned upstream JSON Schema; document
+    links and input fingerprints passed inspection; the architecture diagram
+    rendered. Independent completeness review returned done after corrections.
+    See research/plur-assessment.md and memory/session.md. DEC-001 and Q-001–003
+    remain proposed or pending; PLUR runtime integration has not been performed.
+
+- id: EP-LAB-2026-1001-003
+  timestamp: '2026-10-01T15:56:21Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: lab-knowledge-memory-2026-10-01
+  tags: [operator-decisions, automatic-learning, keyword-retrieval]
+  summary: >-
+    Recorded the operator's answers resolving Q-001–003 in DEC-001: keep
+    memory/plur/ in this repository, isolated from other projects with no automatic
+    sharing; allow automatic learning with periodic review or correction; start
+    with keyword search and add embeddings if retrieval needs improve. Updated
+    design/knowledge-and-memory.md, guidance, config, and memories accordingly.
+    The imported harness recommendation remains unaccepted. PLUR engine and
+    host integration have not been connected.
+
+- id: EP-LAB-2026-1001-004
+  timestamp: '2026-10-01T16:57:43Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: harness-design-sprint-2026-10-01
+  tags: [research-sprint, operator-decisions, harness-proposal]
+  summary: >-
+    Extended all three imported reports and eleven diagrams with seventeen
+    primary-source records and a proposed audit harness specification. Recorded
+    the operator's choices in DEC-002: Solidity/EVM first, small auditor-approved
+    batches, and a local workspace with approved cloud AI providers. DEC-004
+    records the accepted exception for justified alternative evidence when a
+    runnable PoC is impractical. DEC-003 remains proposed. Added three provisional
+    source-backed lessons without approving them as design decisions; earlier
+    memory remains intact. See research/harness-design-sprint.md,
+    design/audit-harness.md and memory/session.md. This timestamp records capture,
+    not the exact time of the operator's answers. No harness or PLUR runtime was
+    implemented.
+
+- id: EP-LAB-2026-1001-005
+  timestamp: '2026-10-01T16:59:25Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: harness-design-sprint-2026-10-01
+  tags: [design-delivery, document-verification, independent-review]
+  summary: >-
+    Completed the harness specification sprint and independent completeness
+    review. The final reviewer returned done with no actionable omissions or
+    contradictions. All sixteen imported files retain their original hashes;
+    document navigation, thirteen engrams against the pinned upstream schema,
+    structured memory and five knowledge cards passed inspection. Three new
+    Mermaid diagrams were rendered and visually checked. See
+    research/harness-sprint-verification.md for checks and limits. DEC-003 and
+    Q-008 remain proposed for operator review; DEC-002 and DEC-004 retain the
+    accepted narrower decisions. Runtime adoption scenarios remain future work.
+
+- id: EP-LAB-2026-1001-006
+  timestamp: '2026-10-01T17:09:27Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: harness-specification-completion-2026-10-01
+  tags: [full-specification, interface-contracts, auditor-workflow]
+  summary: >-
+    Continued the explicit goal to complete the full specification and docs.
+    Added proposed component operations, adapter/error and reconciliation
+    contracts, portable report/PoC export and import behavior, and an auditor
+    guide from intake through closure. Mapped all twenty-eight functional and
+    thirteen non-functional requirements individually in
+    research/harness-specification-completeness.md. Document checks pass;
+    final independent review is pending. These elaborations do not accept
+    DEC-003, change the operator's selected envelope or implement a runtime.
+
+- id: EP-LAB-2026-1001-007
+  timestamp: '2026-10-01T17:12:24Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: harness-specification-completion-2026-10-01
+  tags: [specification-complete, independent-review, continuity]
+  summary: >-
+    Completed the full specification and documentation objective. The independent
+    reviewer compared actual documents with all repository scope items, twenty-eight
+    functional requirements, thirteen non-functional requirements and Q-004–007,
+    returning done without actionable omissions or contradictions. Current links,
+    structured memory, requirement coverage and the synthetic example passed
+    inspection; all three diagrams were visually rechecked and original imports
+    remain unchanged. See research/harness-specification-completeness.md and
+    research/harness-sprint-verification.md. Reviewed standing memory without
+    changing accepted policy. DEC-003/Q-008 architecture acceptance and runtime
+    implementation/validation remain separate future work.

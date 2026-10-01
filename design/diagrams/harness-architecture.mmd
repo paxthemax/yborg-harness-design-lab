@@ -1,0 +1,28 @@
+flowchart TB
+    H["Human auditor"] --> UI["Notebook, queue and evidence review"]
+    subgraph Trusted["Local control and records"]
+      UI --> C["Controller: policy, jobs and decisions"]
+      C --> S["Versioned engagement records"]
+      C --> E["Immutable evidence archive"]
+      S --> X["Context builder and change review"]
+      E --> X
+      X --> C
+      S --> R["Report snapshot and evaluation"]
+      E --> R
+      R --> UI
+      B["Tool broker and receipt collector"] -->|"validated receipts"| C
+    end
+    C -->|"scoped jobs and read snapshots"| W
+    subgraph Workers["Isolated workers"]
+      W["Agent roles"]
+      T["Analyzer, experiment and replay workers"]
+      T --> F["Ephemeral local fork"]
+    end
+    W -->|"tool requests"| B
+    B -->|"scoped execution"| T
+    W -->|"proposals"| C
+    T -->|"raw output and artifacts"| B
+    W -->|"approved context"| P["Provider broker with scoped credentials"]
+    P --> M["Approved cloud AI provider"]
+    F -->|"read methods only"| G["RPC policy gateway"]
+    G --> A["Approved archive RPC"]

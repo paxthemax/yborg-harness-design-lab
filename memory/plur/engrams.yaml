@@ -1,0 +1,446 @@
+# Starter assertions grounded in existing instructions; source text remains authoritative.
+# Review metadata is a lab convention under structured_data, not a PLUR enum.
+- id: ENG-LAB-2026-1001-001
+  version: 2
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: true
+  statement: >-
+    Treat this repository as a design lab whose deliverables are specifications,
+    research, and decision rationale. No harness code is built here, and the lab
+    has no build, lint, or test step.
+  rationale: "The repository defines the product under design and its research scope."
+  source: "AGENTS.md: What this repository is"
+  claim_class: documented
+  domain: lab.scope
+  tags: [design-lab, specification, scope]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: AGENTS.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: []
+      review_status: reviewed
+      authority: repository-instruction
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the repository's deliverable scope."]
+
+- id: ENG-LAB-2026-1001-002
+  version: 2
+  status: active
+  type: behavioral
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: true
+  statement: >-
+    Surface consequential design choices and trade-offs for the human operator.
+    Keep recommendations proposed until the operator makes an explicit decision,
+    and retain the rationale and unresolved questions.
+  rationale: "The human operator guides harness specification development."
+  source: "AGENTS.md: Working here"
+  claim_class: documented
+  domain: lab.decisions
+  tags: [human-authority, decisions, proposals]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: AGENTS.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: []
+      review_status: reviewed
+      authority: repository-instruction
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes decision authority or the repository guidance."]
+
+- id: ENG-LAB-2026-1001-003
+  version: 2
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: true
+  statement: >-
+    Design knowledge and memory for this design lab first, using PLUR as the
+    substrate and guide. Keep the future audit harness's operational memory as
+    a separate design task.
+  rationale: "Lab research continuity and engagement audit state have different owners and lifecycles."
+  source: "Operator request and scope clarification, 2026-10-01; DEC-001 fixed inputs"
+  claim_class: asserted
+  domain: lab.memory
+  tags: [plur, design-lab, memory, scope]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-001-knowledge-and-memory.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-001]
+      review_status: reviewed
+      authority: explicit-operator-instruction
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the requested scope or memory substrate."]
+
+- id: ENG-LAB-2026-1001-004
+  version: 2
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Use mise for internal package and tool management when additional tools are
+    required for work in this repository.
+  rationale: "The repository and operator specify one tooling-management convention."
+  source: "Operator instruction, 2026-10-01; AGENTS.md: Working here; mise.toml"
+  claim_class: asserted
+  domain: lab.tooling
+  tags: [mise, packages, tooling]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: AGENTS.md
+      relevance: primary
+    - path: memory/session.md
+      relevance: supporting
+  structured_data:
+    lab:
+      record_ids: []
+      review_status: reviewed
+      authority: explicit-operator-instruction
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the tooling convention."]
+
+- id: ENG-LAB-2026-1001-005
+  version: 2
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    When comparing primary harness designs, consider the imported assessment's
+    recommendation to start with a persistent evidence workbench. Treat it as
+    a proposal whose applicability needs evaluation and an operator decision.
+  rationale: "The imported assessment prioritizes auditor judgment and bounded evidence-backed investigations."
+  source: "SRC-002 section 1; SRC-003 opening recommendation; K-001"
+  claim_class: documented
+  domain: lab.harness.architecture
+  tags: [evidence-workbench, recommendation, harness]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: kb/claims/K-001-evidence-workbench.md
+      relevance: primary
+    - path: imports/02-audit-harness-independent-assesment.md
+      relevance: supporting
+  structured_data:
+    lab:
+      record_ids: [K-001, SRC-002, SRC-003]
+      review_status: unreviewed
+      authority: imported-recommendation
+      policy_decision: DEC-001
+      approved_by: null
+      approved_on: null
+      stale_if: ["A representative pilot or operator architecture decision changes applicability."]
+
+- id: ENG-LAB-2026-1001-006
+  version: 2
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Keep this lab's PLUR store at memory/plur/ in the repository, isolated from
+    other projects, with no automatic sharing.
+  rationale: "Co-located memory is inspectable alongside its grounding documents and has an explicit project boundary."
+  source: "Operator answer to Q-001, 2026-10-01; DEC-001"
+  claim_class: asserted
+  domain: lab.memory.storage
+  tags: [memory, plur, isolation, sharing]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-001-knowledge-and-memory.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-001, Q-001]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes store placement, isolation, or sharing policy."]
+
+- id: ENG-LAB-2026-1001-007
+  version: 2
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Automatically record useful reusable lessons for this lab and review or
+    correct memory periodically. Memories may guide work before review;
+    consequential design acceptance still requires an operator decision.
+  rationale: "The operator selected less capture friction while retaining human authority over design choices."
+  source: "Operator answer to Q-002, 2026-10-01; DEC-001"
+  claim_class: asserted
+  domain: lab.memory.learning
+  tags: [automatic-learning, periodic-review, decisions]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-001-knowledge-and-memory.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-001, Q-002]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the automatic-learning or review policy."]
+
+- id: ENG-LAB-2026-1001-008
+  version: 2
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Start lab memory retrieval with keyword search. Add embeddings when recurring
+    retrieval needs justify semantic search, using mise for required tooling.
+  rationale: "Keyword retrieval suits the small initial corpus; semantic retrieval can address later conceptual misses."
+  source: "Operator answer to Q-003, 2026-10-01; DEC-001"
+  claim_class: asserted
+  domain: lab.memory.retrieval
+  tags: [keyword, retrieval, embeddings, mise]
+  activation:
+    retrieval_strength: 0.7
+    storage_strength: 1.0
+    frequency: 0
+    last_accessed: '2026-10-01'
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-001-knowledge-and-memory.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-001, Q-003]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the retrieval policy."]
+
+- id: ENG-LAB-2026-1001-009
+  version: 1
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Constrain the first harness proposal to Solidity/EVM, small auditor-approved
+    batches, and a local workspace with approved cloud AI providers. These
+    accepted operating choices do not accept the full architecture.
+  rationale: "The operator resolved the three consequential operating-envelope questions."
+  source: "Operator answers to Q-004–006, 2026-10-01; DEC-002"
+  claim_class: asserted
+  domain: lab.harness.scope
+  tags: [evm, batches, human-authority, local-workspace]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-002-harness-operating-envelope.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-002, Q-004, Q-005, Q-006]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes the harness operating envelope."]
+
+- id: ENG-LAB-2026-1001-010
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Permit auditor-approved alternative evidence when a runnable PoC is
+    impractical, with justification and limits recorded. Clean replay remains
+    the normal route; model agreement alone cannot confirm a finding.
+  rationale: "The operator selected an explicit human exception without conflating impact and proof status."
+  source: "Operator answer to Q-007, 2026-10-01; DEC-004"
+  claim_class: asserted
+  domain: lab.harness.evidence
+  tags: [confirmation, evidence, poc, human-authority]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: decisions/DEC-004-confirmation-evidence-policy.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-004, Q-007]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-01'
+      stale_if: ["The operator changes confirmation evidence policy."]
+
+- id: ENG-LAB-2026-1001-011
+  version: 1
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    When specifying durable agent work, distinguish recovered conversation or
+    checkpoints from current authority and unique result acceptance. Review
+    retry and side-effect behavior for the selected runner.
+  rationale: "The inspected workflow documentation describes replay and uncertain-completion cases."
+  source: "K-003; SRC-013 interrupts and persistence; SRC-014 activity idempotency"
+  claim_class: asserted
+  domain: lab.harness.execution
+  tags: [recovery, idempotency, approvals, proposal]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: kb/claims/K-003-resumption-and-authority.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [K-003, SRC-013, SRC-014, DEC-003]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["The selected runner's persistence or retry semantics change."]
+
+- id: ENG-LAB-2026-1001-012
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    Preserve a refuted lead with its decisive countercondition and revision.
+    The harness proposal reopens negative as well as positive conclusions
+    when relevant code, configuration or assumptions change.
+  rationale: "A stale refutation can suppress a newly valid investigation."
+  source: "K-004; SRC-002 section 3; SRC-003 candidate state machine"
+  claim_class: asserted
+  domain: lab.harness.evidence
+  tags: [refutations, freshness, dependencies, proposal]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: kb/claims/K-004-refutation-freshness.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [K-004, SRC-002, SRC-003, SRC-005, DEC-003]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["The operator changes evidence lifecycle or change-review scope."]
+
+- id: ENG-LAB-2026-1001-013
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    Distinguish property adequacy from tool success. Review intended semantics,
+    reachable actions and oracle sensitivity; generated repairs that alter
+    those premises require renewed semantic review in the harness proposal.
+  rationale: "Passing campaigns or solver results can be uninformative under weak or unreachable specifications."
+  source: "K-005; SRC-009 invariant actions; SRC-011 sanity checks; SRC-012 property maintenance"
+  claim_class: asserted
+  domain: lab.harness.validation
+  tags: [properties, adequacy, oracles, proposal]
+  temporal:
+    learned_at: '2026-10-01'
+  knowledge_anchors:
+    - path: kb/claims/K-005-property-adequacy.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [K-005, SRC-009, SRC-011, SRC-012, DEC-003]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["Tool result semantics, property model or selected adequacy policy changes."]

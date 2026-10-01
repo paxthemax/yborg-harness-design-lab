@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant H as Auditor
+    participant C as Controller
+    participant S as Audit records
+    participant W as Worker
+    H->>C: Approve questions on snapshot A
+    C->>W: Dispatch with A and limited grant
+    H->>C: Record revised assumption B
+    C->>S: Commit B and mark dependents stale
+    C->>W: Suspend affected work or retain A-only output
+    W->>C: Submit evidence for A
+    C->>S: Preserve historical evidence for A
+    H->>C: Attempt acceptance of earlier packet
+    C-->>H: Revision conflict, show affected premise
+    H->>C: Authorize review under B
+    C->>W: New context and attempt
+    W->>C: New evidence and remaining limits
+    C-->>H: Current packet for adjudication
