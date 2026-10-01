@@ -31,3 +31,7 @@ All three released PNGs were visually inspected for readable text and complete f
 Regenerated all three HTML/PNG diagrams for DEC-006. Architecture shows distinct behavioral views and comparison records; lifecycle shows documentation-first intake and comparison at every lens feeding deviations and design-risk questions; premise changes revalidate either model and preserve earlier discrepancy rationale. DEC-006 process acceptance is distinct from the proposed DEC-003 architecture.
 
 All three updated exports were visually inspected for readable text and complete framing.
+
+## Clean architecture export — 2026-10-01
+
+[High-resolution PNG](harness-architecture-clean.png) and [editable HTML](harness-architecture-clean.html) contain only the architecture title, components and handoffs. Proposal/decision labels, introductory notes, footer and navigation links are omitted at the operator’s request. The PNG is rendered at 2800 × 3200 pixels (1400 × 1600 viewport, device scale factor 2) and was visually inspected for complete framing and readable text. This export does not alter design dispositions.

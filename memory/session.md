@@ -55,3 +55,7 @@ The operator requested an Astra Max consultation, resolved its sole clarificatio
 ## Diagram refresh for DEC-006 — 2026-10-01
 
 Updated all three current HTML diagrams and regenerated their PNG exports. Architecture shows separate behavioral views and comparison records; lifecycle shows intake/lensing feeding deviation and design-risk investigations; premise changes show revalidation after either model changes. All three exports were visually inspected: text and footers are fully framed and readable. Updated regeneration dimensions and release notes. Historical Mermaid sources remain historical.
+
+## Clean architecture submission image — 2026-10-01
+
+At the operator’s request, created `design/diagrams/harness-architecture-clean.html` and a visually inspected 2800 × 3200 PNG export. The image contains architecture only, omitting proposal/decision labels, download/navigation links and surrounding notes. Existing diagram releases remain available. No architecture acceptance or external submission occurred.
