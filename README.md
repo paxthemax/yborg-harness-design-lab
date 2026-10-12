@@ -13,18 +13,21 @@ The result of this design is the specification for building this framework, incl
 
 Start with the [human led EVM audit harness proposal](design/audit-harness.md). It recommends a persistent evidence workbench with bounded investigations, property campaigns, scenario analysis, explicit human decisions, and reproducible evidence.
 
+- [Glossary: terms, stages, values and dispositions](design/harness-glossary.md)
 - [State, execution, isolation and memory contracts](design/harness-state-and-execution.md)
 - [Component interfaces, adapters and portable packages](design/harness-interface-contracts.md)
 - [Auditor workflow and review guide](design/harness-auditor-guide.md)
+- [Human/agent work and eight named loops](design/harness-workflow-loops.md) · [HTML diagram](design/diagrams/human-agent-audit-flow.html) · [PNG](design/diagrams/human-agent-audit-flow.png)
 - [Functional and non-functional requirements](design/harness-requirements.md)
 - [Evaluation and improvement plan](design/harness-evaluation.md)
 - [Extended research and diagram comparison](research/harness-design-sprint.md)
+- [New flow review and issue triage](research/flow-diagram-review.md) · [Accepted scenario/review choices](decisions/DEC-007-human-agent-workflow.md)
 - [Accepted operating choices](decisions/DEC-002-harness-operating-envelope.md) and [evidence policy](decisions/DEC-004-confirmation-evidence-policy.md)
-- [Proposed architecture and alternatives](decisions/DEC-003-harness-architecture-proposal.md)
+- [Accepted architecture and alternatives](decisions/DEC-003-harness-architecture-proposal.md) · [Acceptance and remaining dispositions](decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md)
 - [Delivery verification and limits](research/harness-sprint-verification.md)
 - [Full specification completion audit](research/harness-specification-completeness.md)
 
-The operator selected Solidity/EVM first, small approved batches, a local workspace with approved cloud AI, and justified alternative evidence when a runnable PoC is impractical. The complete architecture remains a proposal for review.
+The operator selected Solidity/EVM first, small approved batches, a local workspace with approved cloud AI, and justified alternative evidence when a runnable PoC is impractical. On 2026-10-12 the operator accepted the architecture as amended by the adversarial-review answers ([DEC-008](decisions/DEC-008-adversarial-review-dispositions.md), [DEC-009](decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md)). Tool, provider, sandbox and numeric choices remain open.
 
 ## Knowledge and memory
 

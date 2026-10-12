@@ -37,3 +37,10 @@ Direct retrieval of Foundry's invariant page failed; the source register marks i
 DEC-001 still governs this lab's isolated PLUR-format store, automatic learning and keyword retrieval. Its earlier “lab first” instruction was a scope sequence, not a prohibition on the now-requested separate harness design. Existing instruction memories remain intact. New operator decisions are grounded in DEC-002/004; three new research lessons are active but unreviewed synthesis. They do not establish architectural acceptance. PLUR's engine remains unconnected; all retrieval and updates were file-based.
 
 The full-spec pass reviewed the thirteen standing memories against the current decisions and found no correction needed. Its contract details elaborate the existing resumption, authority and evidence lessons. Completion events were appended to the episode history without manufacturing a new operator acceptance or changing memory activation policy.
+
+## Correction — 2026-10-12
+
+Two statements above no longer describe the repository; the original text is preserved as the record of the 2026-10-01 inspection.
+
+- **The imports have changed.** `imports/` now holds 19 files: the 16 inspected here, plus the two flow images and their manifest registered as SRC-033–034 on 2026-10-02. Compared with the initial commit `f122fb9`, only `imports/README.md` has changed among the original 16. Its operator-authored sentence was reworded during the 2026-10-02 session, and the operator approved the new wording on 2026-10-12 ([DEC-008](../decisions/DEC-008-adversarial-review-dispositions.md), L-01). The SHA-256 fingerprints of the three reports and both flow images still match [the source register](../kb/sources.md).
+- **The directory is a Git repository.** It has been one since commit `f122fb9`. The fingerprint comparison described above remains the method used for that earlier inspection.

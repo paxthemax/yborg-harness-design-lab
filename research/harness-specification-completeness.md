@@ -16,7 +16,7 @@ This audit checks the actual document content against those requirements. Link c
 |---|---|
 | Framework product definition | [Product boundary](../design/audit-harness.md#product-boundary) defines user, inputs, outputs, ecosystem, intended value and exclusions |
 | Functional and non-functional requirements | [Requirements](../design/harness-requirements.md) defines 28 FRs and 13 NFRs, priority boundaries, scenarios/invariants and the status of numerical targets |
-| Component architecture and substrate | [Architecture](../design/audit-harness.md#proposed-architecture), rendered diagram, [write protocol](../design/harness-state-and-execution.md#write-and-approval-protocol) and [component contracts](../design/harness-interface-contracts.md) specify responsibilities, trusted boundaries, state ownership and integration behavior |
+| Component architecture and substrate | [Architecture](../design/audit-harness.md#architecture), rendered diagram, [write protocol](../design/harness-state-and-execution.md#write-and-approval-protocol) and [component contracts](../design/harness-interface-contracts.md) specify responsibilities, trusted boundaries, state ownership and integration behavior |
 | Interaction flows | [Stages and touchpoints](../design/audit-harness.md#audit-stages-and-human-touchpoints), [auditor guide](../design/harness-auditor-guide.md), lifecycle and premise-change diagrams include ordinary decisions, failures, interruption, resumption and closure |
 | Several classes of agents under one auditor | [Role classification](../design/audit-harness.md#agent-role-classification) specifies inputs, outputs and authority exclusions; [controller operations](../design/harness-interface-contracts.md#controller-operations) keeps human-only actions outside worker channels |
 | Shared memory and knowledge base | [Operational memory](../design/harness-state-and-execution.md#shared-knowledge-and-memory) separates evidence, semantic knowledge, working context and lessons; [lab memory](../design/knowledge-and-memory.md) remains distinct under DEC-001 |
@@ -68,7 +68,7 @@ This audit checks the actual document content against those requirements. Link c
 | FR-25 | [Metrics](../design/harness-evaluation.md#metrics-and-denominators) | Outcome, cost, workload, duplication and unresolved-item denominators |
 | FR-26 | [Improvement](../design/harness-evaluation.md#adoption-and-controlled-improvement) | Versioned changes, held-out comparison, disposition and rollback without label rewriting |
 | FR-27 | [Adapter boundary](../design/harness-interface-contracts.md#agent-and-tool-adapter-boundary) | Later ecosystem/engine expansion has a declared semantic/capability contract; implementation intentionally deferred |
-| FR-28 | [Baseline controls](../design/audit-harness.md#proposed-architecture), [unit review](../design/harness-auditor-guide.md#build-enough-shared-understanding) | Control applicability, evidence, exclusions and gaps alongside protocol guarantees |
+| FR-28 | [Baseline controls](../design/audit-harness.md#architecture), [unit review](../design/harness-auditor-guide.md#build-enough-shared-understanding) | Control applicability, evidence, exclusions and gaps alongside protocol guarantees |
 
 ## Non-functional requirement coverage
 
@@ -94,7 +94,7 @@ The six harness specification documents are the product proposal, state/executio
 
 The [delivery verification record](harness-sprint-verification.md) records inspection commands, results and limits. The temporary integrity inspector is reviewed for its actual scope: unchanged imported bytes, local paths/heading anchors, PLUR engram schema and grounding, YAML/card parsing, ID consistency, and SVG structure. It does not test the harness or prove the normative text correct. The main-thread content review and independent completeness review supply the substantive comparison above.
 
-The [evaluation plan](../design/harness-evaluation.md#pilot-protocol) retains its five-step pilot, eleven control/recovery scenarios, three synthetic walkthroughs and metric definitions. The [delivery sequence](../design/audit-harness.md#proposed-delivery-sequence) retains its four future stages. The [adapter checks](../design/harness-interface-contracts.md#compatibility-and-conformance), [interface states](../design/harness-auditor-guide.md#interface-behavior-and-failure-states), example request and package layout are specifications, not executed commands or passing runtime tests. The lab's PLUR integration command examples remain explicitly unexecuted; connecting that engine was not added to this objective.
+The [evaluation plan](../design/harness-evaluation.md#pilot-protocol) retains its five-step pilot, eleven control/recovery scenarios, three synthetic walkthroughs and metric definitions. The [delivery sequence](../design/audit-harness.md#delivery-sequence) retains its four future stages. The [adapter checks](../design/harness-interface-contracts.md#compatibility-and-conformance), [interface states](../design/harness-auditor-guide.md#interface-behavior-and-failure-states), example request and package layout are specifications, not executed commands or passing runtime tests. The lab's PLUR integration command examples remain explicitly unexecuted; connecting that engine was not added to this objective.
 
 ## Open choices and completion disposition
 
@@ -107,3 +107,66 @@ The final independent reviewer re-read the actual documents against the reposito
 ## DESIGNED/IMPLEMENTED amendment — 2026-10-01
 
 [DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md) extends FR-04/05 with documentation-first design construction, auditor/evidence refinement, two inspectable models and comparison at each lens. The comprehension method defines the process; state contracts define correspondence/comparison/discrepancy records; the auditor guide defines presentation; evaluation adds eight future scenarios. Existing revision, approval, retrieval and export contracts apply. This amendment was checked directly for terminology, record coverage and local links; the earlier independent completion review did not review this later amendment. Architecture remains proposed.
+
+## Flow ownership amendment — 2026-10-02
+
+[DEC-007](../decisions/DEC-007-human-agent-workflow.md) accepts agent scenario authorship under approved questions/constraints and combined human evidence review after testing and agent challenge. FR-07/09/15 and the product, state contract and auditor guide now express that behavior. The [workflow/loop contract](../design/harness-workflow-loops.md) supplies ownership, L0–L7 entries/returns/exits, shared iteration bounds and a synthetic routing example. [The source review](flow-diagram-review.md) retains ten triaged issues and both operator answers. This amendment is a direct document/diagram review; the earlier independent completion review did not assess it. No runtime acceptance scenario was executed.
+
+## Correction — 2026-10-12
+
+The artifact audit above describes the diagrams as they stood when it was written on 2026-10-01: three diagrams, each with editable Mermaid and a rendered SVG. Later that day the SVG exports were replaced by standalone HTML diagrams with PNG releases ([diagram notes](../design/diagrams/README.md)). The Mermaid files remain as historical sources. A fourth primary diagram, the human/agent workflow, was added on 2026-10-02, alongside a clean architecture export, and no SVG diagrams remain. The link and requirement counts above are those of the original inspection. The [adversarial design review](adversarial-design-review.md) did not re-run this completion audit.
+
+## DEC-008 integration amendment — 2026-10-12
+
+The coordinated specification pass integrated [DEC-008](../decisions/DEC-008-adversarial-review-dispositions.md) and the [adversarial review](adversarial-design-review.md)'s fixes within the existing direction. It added the [glossary](../design/harness-glossary.md), thirteen functional requirements (FR-29–41) and two non-functional requirements (NFR-14–15), and it amended FR-06–09, 11, 13, 15–18, 20–22, 24–26 and NFR-04, 08 and 13 in place. The requirement catalog has 41 FRs and 15 NFRs. The original matrix above maps FR-01–28 and NFR-01–13 as they stood on 2026-10-01; for amended rows, the requirement catalog's current text prevails.
+
+| Requirement | Specification evidence | What is defined |
+|---|---|---|
+| FR-29 | [Automated intake](../design/harness-comprehension-method.md#automated-intake-and-successive-rounds), [work authorization record](../design/harness-state-and-execution.md#record-contracts) | Bounded seeding rounds under an `intake` authorization; provisional status of seeded statements |
+| FR-30 | [Diagram lifecycle](../design/harness-comprehension-method.md#diagram-lifecycle-in-the-knowledge-base) | State-machine diagrams bound to record dependencies, with freshness and semantic deltas |
+| FR-31 | [Runnable explorations](../design/harness-comprehension-method.md#runnable-and-resumable-explorations), [walkthrough](../design/harness-comprehension-method.md#6-walk-the-auditor-through-the-causal-story) | Repeatable, resumable recipes; connected walkthrough with optional checkpoints |
+| FR-32 | [State transitions](../design/harness-state-and-execution.md#state-transitions), [controller operations](../design/harness-interface-contracts.md#controller-operations) | Admission requires a recorded relevant-flow review; `authorize_work` refuses otherwise |
+| FR-33 | [Glossary](../design/harness-glossary.md#terms), [engagement record](../design/harness-state-and-execution.md#record-contracts), [methods](../design/audit-harness.md#three-investigation-methods) | Broad default attacker charter narrowed per engagement; trusted-role premise reported |
+| FR-34 | [Whole-system outline](../design/harness-comprehension-method.md#1-establish-the-whole-system-outline), [snapshot and audit-unit records](../design/harness-state-and-execution.md#record-contracts) | Deterministic inventory, vendored-dependency verification, auditor review coverage |
+| FR-35 | [Lead generation](../design/audit-harness.md#three-investigation-methods), [`prepare_work`](../design/harness-interface-contracts.md#controller-operations) | Generator classes per unit with coverage and a depth requirement; cross-engagement library open as Q-022 |
+| FR-36 | [Composition](../design/harness-comprehension-method.md#composition-across-flows), [audit-unit kinds](../design/harness-glossary.md#value-tables) | Interference matrix; `composition` and `system_invariant` units |
+| FR-37 | [State machines, stores and refinement](../design/harness-comprehension-method.md#state-machines-stores-and-refinement) | Conservation relations, units and decimals, rounding direction |
+| FR-38 | [Threat model and isolation](../design/harness-state-and-execution.md#permissions-and-isolation), [replay validity](../design/harness-state-and-execution.md#replay-and-semantic-validity) | Steering and suppression threats, visible deceptive characters, ingestion flags, environment-sensitive results |
+| FR-39 | [Write protocol](../design/harness-state-and-execution.md#write-and-approval-protocol), [`capture_input` and decision kinds](../design/harness-interface-contracts.md#human-decision-kinds) | Verbatim captured input, batched confirmation, display receipts |
+| FR-40 | [Write protocol](../design/harness-state-and-execution.md#write-and-approval-protocol), [review packet record](../design/harness-state-and-execution.md#record-contracts) | Unreviewed agent statements listed; conditional decisions |
+| FR-41 | [Write protocol](../design/harness-state-and-execution.md#write-and-approval-protocol) | Auditor-run artifacts through a wrapper, or labelled with an untrusted receipt |
+| NFR-14 | [Pilot protocol](../design/harness-evaluation.md#pilot-protocol), [metrics](../design/harness-evaluation.md#metrics-and-denominators) | Canary packets and decision-quality reporting against an operator-set target |
+| NFR-15 | [Pilot protocol](../design/harness-evaluation.md#pilot-protocol), [interaction design](../design/audit-harness.md#interaction-and-question-design) | Decision inventory and an operator-set ceiling per engagement-day |
+
+The amended rows draw on the same documents:
+
+- **Dispositions** (FR-16): the [glossary](../design/harness-glossary.md#dispositions-and-evidence).
+- **Probes and the snapshot diff** (FR-17): [invalidation](../design/harness-state-and-execution.md#evidence-invalidation-and-revision-changes).
+- **The walking skeleton** (FR-18): [deferred mechanisms](../design/harness-state-and-execution.md#deferred-mechanisms).
+- **Fix statuses** (FR-20): the glossary and the [auditor guide](../design/harness-auditor-guide.md#pause-resume-and-review-changes).
+- **Reports and packages** (FR-21, FR-22): the [package contract](../design/harness-interface-contracts.md#portable-report-and-poc-package).
+- **Isolation** (FR-24, NFR-04): [permissions](../design/harness-state-and-execution.md#permissions-and-isolation).
+
+Still open, and not specified as decided: Q-008 and Q-021–026. The accepted residual risk from Q-014 is stated in the [product proposal](../design/audit-harness.md#accepted-residual-risks). This amendment was checked with link and requirement-ID inspections; the 2026-10-01 independent completion review did not assess it.
+
+## DEC-009 integration amendment — 2026-10-12
+
+A second coordinated pass integrated [DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md). In it the operator accepted the architecture as amended (Q-008) and answered Q-021–026. The pass added two functional requirements, FR-42 and FR-43, and amended FR-07, 24, 26 and 35 in place. The requirement catalog has 43 FRs and 15 NFRs. The original 2026-10-01 audit text above is preserved; this section supersedes its statements about open choices.
+
+| Requirement | Specification evidence | What is defined |
+|---|---|---|
+| FR-42 | [Mechanism library and library transfer](../design/harness-glossary.md#terms), [library records](../design/harness-state-and-execution.md#record-contracts), [library permissions](../design/harness-state-and-execution.md#permissions-and-isolation), [`record_transfer`](../design/harness-interface-contracts.md#human-decision-kinds) | A curated cross-engagement library of public entries and the auditor's sanitized lessons; the auditor's two confirmations for each lesson transfer; no entry names its source engagement |
+| FR-43 | [Expectations pre-step, read-first mode and intent timing](../design/harness-glossary.md#terms), [system statement and comparison records](../design/harness-state-and-execution.md#record-contracts), [comprehension choices](../design/harness-comprehension-method.md#operator-choices) | An optional pre-step that blocks nothing when skipped, and read-first mode; `before_walkthrough` or `after_walkthrough`, derived from the first recorded presentation of the unit's implemented behavior and shown with comparisons and in the report |
+
+The amended rows draw on these documents:
+
+- **Linked variants** (FR-07): the [glossary](../design/harness-glossary.md#terms), the [scenario-variant and decision records](../design/harness-state-and-execution.md#record-contracts) and the [loop register](../design/harness-workflow-loops.md#loop-register).
+- **The library as the only channel for reusable knowledge between engagements** (FR-24): [permissions](../design/harness-state-and-execution.md#permissions-and-isolation).
+- **Adoption on the held-out comparison** (FR-26): the [evaluation plan](../design/harness-evaluation.md#adoption-and-controlled-improvement).
+- **Library retrieval as a lead generator** (FR-35): [lead generation](../design/audit-harness.md#three-investigation-methods).
+
+Q-021 and Q-024 add accepted residual risks. They are stated in the [product proposal](../design/audit-harness.md#accepted-residual-risks), each with an evaluation scenario. Q-025 sets a boundary: urgent disclosure stays outside the harness. Q-027, registered during this pass, was decided the same day in [DEC-010](../decisions/DEC-010-linked-variants-into-unreviewed-flows.md), described below. Numeric limits and the selection of store, runner, model provider, sandbox and agent host remain proposals, as the [accepted baseline](../design/harness-glossary.md#terms) defines. This amendment was checked with link and requirement-ID inspections; the 2026-10-01 independent completion review did not assess it.
+
+## DEC-010 amendment — 2026-10-12
+
+The operator chose option B for Q-027 in [DEC-010](../decisions/DEC-010-linked-variants-into-unreviewed-flows.md). A linked variant may enter a flow that has no `record_flow_review` decision, and the review packet flags its claims as concerning an unreviewed flow. FR-32 is amended in place; batch authorization still requires the flow review. The rule appears in the [glossary](../design/harness-glossary.md#terms), the [state contract](../design/harness-state-and-execution.md#record-contracts), the [component contracts](../design/harness-interface-contracts.md#controller-operations), the [product proposal](../design/audit-harness.md#interaction-and-question-design), the [auditor guide](../design/harness-auditor-guide.md) and the [loop register](../design/harness-workflow-loops.md#loop-register). No question in the register remains open. This amendment was checked with link and requirement-ID inspections.

@@ -543,3 +543,290 @@
       approved_by: lab-operator
       approved_on: '2026-10-01'
       stale_if: ["The operator changes the behavior-model comparison process."]
+
+- id: ENG-LAB-2026-1002-001
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    The auditor approves investigation questions and constraints; agents draft,
+    test and refine scenarios within them. Required human scenario co-authoring
+    is omitted. Review one combined packet after testing and agent challenge,
+    interrupting earlier for consequential questions. Changed meaning, attacker
+    powers, scope, permissions or budget still require the human decision.
+  rationale: "The operator selected agent scenario authorship and combined review in two focused answers."
+  source: "DEC-007: Q-012 and Q-013 operator answers on 2026-10-02"
+  claim_class: documented
+  domain: lab.harness.workflow
+  tags: [scenario-loop, human-authority, review-cadence, operator-decision]
+  temporal:
+    learned_at: '2026-10-02'
+  knowledge_anchors:
+    - path: decisions/DEC-007-human-agent-workflow.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-007, Q-012, Q-013]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-02'
+      stale_if: ["The operator changes scenario authorship or human review cadence."]
+
+- id: ENG-LAB-2026-1002-002
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    Label each repeated workflow with its entry, owner, repeated work, return,
+    finite allowance, exit and persisted output. Distinguish scenario refinement,
+    fixture/search iteration, new questions, revalidation and future method
+    improvement. Inner iterations share the parent budget; a stopping condition
+    establishes a work outcome rather than security coverage or refutation.
+  rationale: "The flow review found different authority boundaries hidden behind generic loop labels."
+  source: "K-007; SRC-033 feedback arrows; SRC-034 investigation, repair, fuzzing and improvement loops"
+  claim_class: asserted
+  domain: lab.harness.workflow
+  tags: [loops, bounded-work, authority, proposal]
+  temporal:
+    learned_at: '2026-10-02'
+  knowledge_anchors:
+    - path: kb/claims/K-007-loop-boundaries.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [K-007, SRC-033, SRC-034, DEC-002, DEC-003, DEC-007]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["Batch authority or loop ownership changes, or a trial reveals ambiguous exits or approval churn."]
+
+- id: ENG-LAB-2026-1012-001
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: leaning
+  pinned: false
+  statement: >-
+    Treat a harness gate as unenforced when only the agent it constrains, or
+    one auditor reading an agent-composed packet, detects its crossing. Look
+    for a mechanical detector in data the controller already holds: runner
+    traces, fixture syntax, oracle hashes, compiler artifacts, record link
+    sets and snapshot diffs. Check packets, inventories and reports for what
+    they omit as well as for what supports them.
+  rationale: "The adversarial review found the same unenforced-gate pattern in six findings, each reached by several passes."
+  source: "K-008; research/adversarial-design-review.md AR-01, AR-02, AR-04, AR-05, AR-16, AR-17"
+  claim_class: asserted
+  domain: lab.harness.authority
+  tags: [authority, enforcement, adversarial-review, proposal]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: kb/claims/K-008-unenforced-semantic-gates.md
+      relevance: primary
+    - path: research/adversarial-design-review.md
+      relevance: supporting
+  structured_data:
+    lab:
+      record_ids: [K-008, Q-014, Q-016, Q-017, DEC-003, DEC-007]
+      review_status: unreviewed
+      authority: source-backed-synthesis
+      approved_by: null
+      approved_on: null
+      stale_if: ["The operator accepts mechanically enforced gates, or a trial shows agent self-classification is reliable."]
+
+- id: ENG-LAB-2026-1012-002
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Agents classify their own scenario and fixture changes under DEC-007, and
+    the challenger reviews setup powers. There is no mechanical envelope; this
+    is an accepted residual risk. Dispositions scale with potential impact:
+    triaged_out; no_finding_within_bounds; and rejected, which needs decisive
+    evidence plus a guard-removed rerun for potential High/Critical executable
+    claims. Low/Info findings may be accepted on a code argument.
+    High/Critical packets show the evidence and the verbatim counterargument
+    before the proposed verdict, and rationale authorship is recorded.
+  rationale: "The operator answered Q-014, Q-016 and Q-017 in focused rounds after the adversarial review."
+  source: "DEC-008: Q-014, Q-016 and Q-017 operator answers on 2026-10-12"
+  claim_class: documented
+  domain: lab.harness.authority
+  tags: [human-authority, evidence-policy, review-cadence, operator-decision]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: decisions/DEC-008-adversarial-review-dispositions.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-008, Q-014, Q-016, Q-017, DEC-004, DEC-007]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-12'
+      stale_if: ["The operator changes scenario-change enforcement, disposition tiers or packet order."]
+
+- id: ENG-LAB-2026-1012-003
+  version: 2
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    The default attacker is a broad permissionless EVM adversary, narrowed per
+    engagement; privileged roles are trusted unless the auditor raises them.
+    The auditor keeps the agent tool: typed input is captured verbatim outside
+    the model, agent interpretations are confirmed in batches on a trusted
+    screen, and the tool is confined per engagement with its memory off. After
+    a code change, dependency probes are rerun and freshness tiers assigned
+    instead of conservative widening. A walking skeleton is built first.
+    DEC-008 left Q-008 open; DEC-009 accepted it as amended the same day.
+  rationale: "The operator answered Q-015, Q-018, Q-019 and Q-020 in focused rounds after the adversarial review."
+  source: "DEC-008: Q-015, Q-018, Q-019 and Q-020 operator answers on 2026-10-12"
+  claim_class: documented
+  domain: lab.harness.architecture
+  tags: [threat-model, substrate, invalidation, build-order, operator-decision]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: decisions/DEC-008-adversarial-review-dispositions.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-008, Q-015, Q-018, Q-019, Q-020, DEC-003, Q-008, DEC-009]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-12'
+      stale_if: ["The operator changes the default charter, agent-tool channel, invalidation model or build order."]
+
+- id: ENG-LAB-2026-1012-004
+  version: 1
+  status: active
+  type: architectural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    The evidence workbench is the accepted architecture for the first harness,
+    as amended by DEC-008 and DEC-009 (Q-008). One auditor steers, and agents
+    propose and carry out work. A deterministic controller enforces authority,
+    runs jobs and keeps canonical records that agents cannot write. Approvals
+    bind exact revisions, evidence is hash-pinned with trusted-runner receipts,
+    and hypothesis, property and scenario investigations share versioned
+    records. The first build is the walking skeleton. Numeric limits and the
+    choice of store, runner, model provider, sandbox and agent host are not
+    accepted, and acceptance does not start implementation.
+  rationale: "The operator accepted the amended architecture last in a walkthrough of the remaining questions."
+  source: "DEC-009: Q-008 operator answer on 2026-10-12"
+  claim_class: documented
+  domain: lab.harness.architecture
+  tags: [architecture, acceptance, walking-skeleton, operator-decision]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md
+      relevance: primary
+    - path: decisions/DEC-003-harness-architecture-proposal.md
+      relevance: supporting
+  structured_data:
+    lab:
+      record_ids: [DEC-009, DEC-003, DEC-008, Q-008]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-12'
+      stale_if: ["The operator amends, supersedes or withdraws the accepted architecture, for example after a pilot."]
+
+- id: ENG-LAB-2026-1012-005
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    Auditee statements keep an origin label and per-finding response history
+    only. There is no communications log, no independence rule for
+    documentation the auditee writes during the engagement and no known-issue
+    rule; those gaps are accepted residual risks. A curated cross-engagement
+    mechanism library holds public material plus lessons the auditor
+    sanitizes and transfers through explicit records. Writing expectations
+    before a flow's implementation walkthrough is an optional pre-step, and
+    intent recorded after exposure is tagged. Method changes are adopted on
+    the existing held-out comparison, and a narrowing change that looks like
+    an improvement is an accepted residual risk. There is no urgent
+    disclosure path. A follow-up into a different guarantee that needs no new
+    capability, permission, budget, attacker power or scope stays in the
+    batch as a linked variant.
+  rationale: "The operator answered Q-021 to Q-026 in a plain-language walkthrough that gave options and a recommendation for each."
+  source: "DEC-009: Q-021 to Q-026 operator answers on 2026-10-12"
+  claim_class: documented
+  domain: lab.harness.workflow
+  tags: [auditee, mechanism-library, comprehension, evaluation, disclosure, routing, operator-decision]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-009, Q-021, Q-022, Q-023, Q-024, Q-025, Q-026, DEC-005, DEC-006, DEC-007]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-12'
+      stale_if: ["The operator changes auditee handling, library sharing, intent capture, the adoption gate, urgent disclosure or follow-up routing."]
+
+- id: ENG-LAB-2026-1012-006
+  version: 1
+  status: active
+  type: procedural
+  scope: project:framework-design-lab
+  visibility: private
+  commitment: locked
+  pinned: false
+  statement: >-
+    A linked variant may follow an effect into a flow that has no
+    record_flow_review decision. The review packet flags its linked claims as
+    concerning an unreviewed flow, and a linked variant never marks a flow
+    reviewed. DEC-005's flow-review gate still governs batch authorization
+    (FR-32).
+  rationale: "The operator chose option B for Q-027 after a plain-language recap, against the recommendation."
+  source: "DEC-010: Q-027 operator answer on 2026-10-12"
+  claim_class: documented
+  domain: lab.harness.workflow
+  tags: [routing, linked-variants, flow-review, operator-decision]
+  temporal:
+    learned_at: '2026-10-12'
+  knowledge_anchors:
+    - path: decisions/DEC-010-linked-variants-into-unreviewed-flows.md
+      relevance: primary
+  structured_data:
+    lab:
+      record_ids: [DEC-010, Q-027, DEC-005, DEC-009, FR-32]
+      review_status: reviewed
+      authority: explicit-operator-decision
+      approved_by: lab-operator
+      approved_on: '2026-10-12'
+      stale_if: ["The operator changes how linked variants interact with the flow-review gate."]

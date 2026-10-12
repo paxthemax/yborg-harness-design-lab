@@ -1,6 +1,6 @@
 # Comprehension through repeatable lenses
 
-Status: **operator requirements accepted; detailed method proposed**, 2026-10-01, second Astra Max pass. [DEC-005](../decisions/DEC-005-comprehension-lensing.md) records the connected walkthrough with optional checkpoints, automated knowledge seeding, state-machine flow diagrams, and repeatable exploration through purpose, flows, stores and progressively finer transitions. The mechanisms below are recommendations implementing that direction. Q-010 accepts investigation after broad orientation and review of the relevant flow; the broader architecture remains proposed under [DEC-003](../decisions/DEC-003-harness-architecture-proposal.md).
+Status: **accepted baseline**, 2026-10-12; first written 2026-10-01 in the second Astra Max pass. [DEC-005](../decisions/DEC-005-comprehension-lensing.md) accepted the operator requirements directly: the connected walkthrough with optional checkpoints, automated knowledge seeding, state-machine flow diagrams, and repeatable exploration through purpose, flows, stores and progressively finer transitions. The detailed mechanisms below implement that direction. They entered the [accepted baseline](harness-glossary.md#terms) when the architecture was accepted as amended ([DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md), Q-008), and a consequential change to them still needs an operator decision. Q-010 accepts investigation after broad orientation and review of the relevant flow. Amended 2026-10-12 for [DEC-008](../decisions/DEC-008-adversarial-review-dispositions.md), DEC-009 and the [adversarial review](../research/adversarial-design-review.md)'s fixes; names and values follow the [glossary](harness-glossary.md).
 
 The harness first creates a provisional knowledge base. Auditor and agent then examine the same system through four lenses: **purpose → flows → stores → transitions**, returning to any lens at any time and increasing resolution on the selected subject. Each exploration leaves inspectable knowledge and helps the auditor reason about that knowledge. [The review](../research/comprehension-methodology-review.md#second-pass-lensing-and-state-machines) preserves first-pass rationale and the second-pass refinements. No harness runtime or learning-effect evaluation is provided here.
 
@@ -31,21 +31,29 @@ At every level the auditor can ask “what lives here?”, “what can change th
 
 [DEC-006](../decisions/DEC-006-designed-and-implemented-behavior.md) accepts two separately inspectable models as the organizing structure of comprehension. **DESIGNED** describes intended purpose, flows, logical states, stores, transitions, permissions, accounting, required outcomes and exceptions. **IMPLEMENTED** describes actual code/configuration behavior, reachable paths, guards, state effects, external interactions and failure outcomes, grounded in source analysis or execution evidence with that distinction explicit.
 
-Seed DESIGNED from documentation first, then develop it substantially with auditor input and further applicable evidence throughout the audit. Preserve documented claims, auditor clarifications, inferred candidates and adopted audit assumptions distinctly. Missing or conflicting design remains visible. Code/tests/domain knowledge may suggest provisional reconstructions for review; code-derived reconstruction cannot independently demonstrate conformity. Documentation first does not permanently outrank applicable later evidence, and an adopted premise does not retrospectively prove original developer intent.
+Seed DESIGNED from documentation first, then develop it substantially with auditor input and further applicable evidence throughout the audit. Preserve documented claims, auditor clarifications, inferred candidates and adopted audit assumptions distinctly. Documentation the auditee writes during the engagement is seeded like any other documentation (DEC-009, Q-021); because it can mirror the code, a comparison against it may find no discrepancy, an accepted residual risk. Missing or conflicting design remains visible. Code/tests/domain knowledge may suggest provisional reconstructions for review; code-derived reconstruction cannot independently demonstrate conformity. Documentation first does not permanently outrank applicable later evidence, and an adopted premise does not retrospectively prove original developer intent.
 
 At **every lens**, inspect both models and compare the selected subject: required vs available behavior, designed constraints vs reachable outcomes, implemented paths without established design explanation, and design obligations without examined implementation. Trace both directions. Map semantic correspondence before declaring a mismatch; one logical state/store/transition may map to several implementation elements or transactions. Carry assumptions, timing, exceptions, failure paths and abstraction limits into the comparison.
 
-Persist each comparison and discrepancy using the [record contracts](harness-state-and-execution.md#record-contracts). Side-by-side model views and a compact table show designed claim, implemented behavior, conditions, evidence, unresolved issue and next action. Missing design evidence, unexamined implementation and examined comparisons with no observed discrepancy remain distinct; an empty discrepancy list cannot imply review. Deeper lensing may reveal discrepancies hidden by coarse views.
+Persist each comparison and discrepancy using the [record contracts](harness-state-and-execution.md#record-contracts). Side-by-side model views and a compact table show designed claim, implemented behavior, conditions, evidence, unresolved issue and next action. Missing design evidence, unexamined implementation and examined comparisons with no observed discrepancy remain distinct; an empty discrepancy list cannot imply review. A comparison that relies on auditor intent tagged `after_walkthrough` shows the tag (DEC-009, Q-023). Deeper lensing may reveal discrepancies hidden by coarse views.
 
-Discrepancies feed proposed investigations, not automatic findings. Also challenge the design against security objectives and the threat model where implementation conforms. Changes to either model invalidate affected correspondence, comparison, discrepancy and investigation applicability without deleting history. Relevant-flow review exposes the comparison premises/gaps needed for its investigation; other flows may remain incomplete under DEC-005.
+Discrepancies feed proposed investigations, not automatic findings. Also challenge the design against security objectives and the threat model where implementation conforms. Changes to either model re-run the dependency probes of the affected correspondence, comparison, discrepancy and investigation records. The probes set each record's freshness without deleting history. Relevant-flow review exposes the comparison premises/gaps needed for its investigation; other flows may remain incomplete under DEC-005.
 
 ## Automated intake and successive rounds
 
-Under the intake's approved read/analysis capabilities and finite budget, the model seeds the engagement KB automatically: inventory sources, extract provisional purpose/flow/store/transition records, attach anchors and uncertainty, and generate preliminary diagrams. Missing documentation does not stop structural seeding; inferred intent is labeled provisional. Build/analyzer failure produces partial results and gaps.
+Under an `intake` work authorization's approved read/analysis capabilities and finite budget, the model seeds the engagement KB automatically (FR-29). It extracts provisional purpose/flow/store/transition records, attaches anchors and uncertainty, and generates preliminary diagrams.
 
-Each round consumes a frozen snapshot and the previous knowledge revision. It prioritizes missing connections and consequential contradictions, checks selected claims against sources, and emits a bounded delta plus proposed explorations for the auditor. Another round runs only within the current budget/round limit and for a named gap or refinement; “more to discover” is not an unlimited loop. Stop with a useful seed or an explicit partial seed, remaining gaps, and a resumable exploration entry point. Exact limits are engagement settings, not a research-derived optimum.
+The scope inventory itself is not agent work (FR-34):
 
-Automatic publication means **available as attributed provisional knowledge**, not human-reviewed semantics. Agents may persist grounded observations and proposals through the existing controller without per-record permission. A seed cannot silently accept a guarantee, resolve disputed intent or authorize an investigation. Human and agent can start exploring before every seed gap is resolved. Under the accepted Q-010 policy, security investigation may begin after broad orientation and review of its relevant flow, subject to ordinary batch authorization and semantic/evidence checks; other gaps stay visible.
+- It is derived deterministically from compiler artifacts: contracts, external and public functions, modifiers, storage variables, assembly blocks, and low-level call and delegatecall sites.
+- Vendored dependencies are compared with their upstream release tags, and modified copies are diffed.
+- Every inventoried item that maps to no audit unit is an explicit gap.
+
+Missing documentation does not stop structural seeding; inferred intent is labeled provisional. Build/analyzer failure produces partial results and gaps.
+
+Each round consumes a frozen snapshot and the previous knowledge revision. It prioritizes missing connections and consequential contradictions, checks selected claims against sources, and emits a bounded delta plus proposed explorations for the auditor. Another round runs only within the `intake` authorization's budget and round limit, and only for a named gap or refinement; “more to discover” is not an unlimited loop. Stop with a useful seed or an explicit partial seed, remaining gaps, and a resumable exploration entry point. Exact limits are engagement settings, not a research-derived optimum.
+
+Automatic publication means **available as attributed provisional knowledge**, not human-reviewed semantics. Agents may persist grounded observations and proposals through the existing controller without per-record permission. Any that no human has reviewed are listed in every decision whose dependency closure contains them (FR-40). A seed cannot silently accept a guarantee, resolve disputed intent or authorize an investigation. Human and agent can start exploring before every seed gap is resolved. Under the accepted Q-010 policy, security investigation may begin after broad orientation and review of its relevant flow, subject to ordinary batch authorization and semantic/evidence checks; other gaps stay visible.
 
 ## The method inside each lens
 
@@ -53,11 +61,13 @@ The first-pass loop still applies within each exploration: orient, trace, challe
 
 ### 1. Establish the whole-system outline
 
-Start with the pinned intake snapshot. Inventory contracts and relevant dependencies, entry points, assets and accounting units, actors/roles, privileged changes, external integrations, deployment/configuration facts and lifecycle phases. Include initialization, upgrade, pause/emergency and exit/settlement behavior where applicable. Every inventoried in-scope element maps to an audit unit or an explicit unmodeled gap; unknown external targets remain unknown.
+Start with the pinned intake snapshot and its [deterministic inventory](#automated-intake-and-successive-rounds). Organize the contracts and relevant dependencies, entry points, assets and accounting units, actors/roles, privileged changes, external integrations, deployment/configuration facts and lifecycle phases. Include initialization, upgrade, pause/emergency and exit/settlement behavior where applicable. Every inventoried in-scope element maps to an audit unit or an explicit unmodeled gap; unknown external targets remain unknown. For proxied systems, upgrade and storage-layout safety is a mandatory `upgrade_and_storage_layout` unit.
+
+When the documentation says the system implements a standard, the standard's requirements enter DESIGNED as `documented_claim` statements. Examples are ERC-20 or one of its variants, ERC-4626 and ERC-1967. Conformance is then compared even where the project's own documentation and code agree with each other.
 
 Use a compact system map to answer: what does the protocol promise, where does value live, who can change its rules, and which outside behavior does it rely on? Record the auditor's existing notes and terms when supplied. Agents may prepare structure before this review, but broad vulnerability narratives need not precede the auditor's initial orientation.
 
-This pass establishes breadth, not completed review. Reconcile the inventory against available compiler/structural results and documents; record failures and unsupported constructs. Inventory completeness is itself bounded by available sources. The map should visibly distinguish known scope, excluded scope and unresolved boundaries.
+This pass establishes breadth, not completed review. Reconcile the agent's provisional system map against the deterministic inventory and the documents; record failures and unsupported constructs. An agent may not drop an inventoried item as deprecated, unreachable or out of scope. Only the auditor's exclusion decision removes an item; otherwise it stays a gap. Inventory completeness is itself bounded by what the compiler artifacts and available sources expose. The map should visibly distinguish known scope, excluded scope and unresolved boundaries.
 
 **Output:** scope index, initial actors/assets/state/dependency views, candidate audit units and open gaps. **Next:** select one complete flow whose understanding matters to the next audit decision.
 
@@ -66,6 +76,8 @@ This pass establishes breadth, not completed review. Reconcile the inventory aga
 Select a flow using value at risk, trust-boundary complexity, novelty, uncertainty and dependence of planned work. Keep an untouched-area reminder so repeatedly studying the most familiar path does not hide the rest of the scope.
 
 Frame a causal question such as “How does a user turn a recorded entitlement into a final payout?” Extract documented intent independently of the implementation narrative. Distinguish developer documentation, an auditor's policy choice and an unconfirmed inference. Missing intent becomes an unknown or explicit conditional branch.
+
+Before the walkthrough of this flow's implemented behavior, the auditor may record expectations: what should happen and what must never happen. This [expectations pre-step](harness-glossary.md#terms) is optional for every flow, including critical ones; when it is skipped, the auditor reviews what the agents found. The note enters through `capture_input` with the flow named, and any agent interpretation of it still needs batched confirmation (Q-018). In [read-first mode](harness-glossary.md#terms), the auditor reads the documentation and code first while the knowledge base builds in the background, and the agents' account of implemented behavior waits until the auditor ends it (DEC-009, Q-023).
 
 Draft the relevant guarantee with actors, assets/units, preconditions, timing, exceptions and fees/rounding when material. A proposed guarantee retains review status. Existing code behavior cannot by itself define what should be guaranteed.
 
@@ -94,9 +106,11 @@ Each consequential statement cites snapshot identity plus symbol/range or tool/t
 
 ### 4. Check predictions and challenge the model
 
-Before running a check, state what each competing interpretation predicts. Choose the cheapest discriminating evidence: inspect a writer/caller, examine pinned configuration, follow a branch, or run a small trace/state example when permitted. Record expected and observed results separately. A comprehension probe uses existing grants and budgets; new capabilities, new investigation scope or consequential experiment semantics follow the ordinary approval contract.
+Before running a check, state what each competing interpretation predicts. Choose the cheapest discriminating evidence: inspect a writer/caller, examine pinned configuration, follow a branch, or run a small trace/state example when permitted. Record expected and observed results separately. A comprehension probe runs under an `exploration` work authorization's grants and budget; new capabilities, new investigation scope or consequential experiment semantics follow the ordinary approval contract.
 
-A checking pass receives the same source snapshot and the question, initially without the mapper's explanatory narrative where practical. It reconstructs critical steps and searches for a defeating condition, omitted state writer or boundary. It then compares the proposed statements and their citations. Record shared sources and prior context; role separation does not establish statistical independence.
+A checking pass receives the same source snapshot and the question. Its initial context omits the mapper's explanatory narrative where practical, and always omits the provisional statements on the path it is checking. It can also run comment-blind, with comments and NatSpec stripped, so documentation cannot frame what it looks for. It reconstructs critical steps and searches for a defeating condition, omitted state writer or boundary. It then compares the proposed statements and their citations.
+
+Record the pass's independence in the context manifest: same model or provider, shared sources, prior context, and whether it ran comment-blind. Role separation does not establish statistical independence.
 
 Check two things explicitly: **does the source support this claim, and what would make it false or inapplicable?** A normal-path trace demonstrates that execution under its setup; it does not prove a universal guarantee. If evidence remains unavailable, preserve the competing models and specify the needed observation.
 
@@ -104,7 +118,7 @@ Check two things explicitly: **does the source support this claim, and what woul
 
 ### 5. Reconcile two versioned behavioral models
 
-The curator submits attributed changes through the existing controller. Preserve the established system-statement kinds: **intent, observed implementation, assumption, guarantee, unknown**. An inference or hypothesis carries origin and review status in the relevant statement/question/investigation record; it does not require replacing this taxonomy.
+The curator submits attributed changes through the existing controller. Preserve the established system-statement kinds: **intent, observed implementation, assumption, guarantee, unknown**. An inference or hypothesis carries its origin and review status in the relevant statement, clarification or investigation record; it does not require replacing this taxonomy. Origins follow the [glossary](harness-glossary.md#value-tables). An auditor clarification derives from captured input, and an answer the auditee supplies through the auditor keeps the `auditee_statement` origin. Intent the auditor records also carries its [intent timing](harness-glossary.md#terms), `before_walkthrough` or `after_walkthrough`. The controller derives it from capture times and the first recorded presentation of the unit's implemented behavior, which includes viewing the seed's preliminary diagrams; it is never self-reported.
 
 A contradiction links both statements with their applicability and sources. Do not average them into a smooth story. Human intent/assumption decisions remain human-owned; observed code behavior cannot be overwritten by an answer about intent. Differences can yield an ordinary clarification, a design-risk question or a proposed investigation.
 
@@ -118,9 +132,9 @@ The accepted default is a short connected walkthrough with optional checkpoints.
 
 The first view shows purpose, a compact flow diagram, the important guarantee and one material uncertainty. Deeper views reveal stores and transition effects, then code/evidence and competing interpretations. Generate diagrams into the KB as part of each flow's record view; a large combined graph remains optional. Every consequential step links back to the same record revisions used by agents. No new unsupported fact may be added simply to make the lesson easier.
 
-At a meaningful boundary, offer one optional activity: predict the next state, explain why a guard matters, or consider one changed condition. Supply prompt feedback with source links. The auditor may instead inspect code, correct the account, ask for an analogy, request greater depth, or skip the activity. Do not stop after every sentence waiting for “continue.” A material semantic question uses the normal question route; an optional learning prompt has no approval effect.
+At a meaningful boundary, offer one optional activity: predict the next state, explain why a guard matters, or consider one changed condition. Supply prompt feedback with source links. The auditor may instead inspect code, correct the account, ask for an analogy, request greater depth, or skip the activity. Do not stop after every sentence waiting for “continue.” A material semantic question uses the normal clarification route; an optional learning prompt has no approval effect.
 
-The auditor's response can expose an agent error. Treat disagreement as a candidate model correction, not automatically as a learner mistake. Capture consequential corrections with attribution; check the evidence and update affected views. If the agent cannot ground its feedback, mark the answer unresolved rather than grading from its own narrative.
+The auditor's response can expose an agent error. Treat disagreement as a candidate model correction, not automatically as a learner mistake. The auditor's words reach the record verbatim through the capture channel (FR-39). The agent may propose a structured correction linked to that captured input. It becomes intent or an assumption only when the auditor confirms it on the trusted decision screen, in a batch at the next checkpoint. Intent that comes from what the auditor said during or after this walkthrough is `after_walkthrough`. The agent never records its paraphrase as the auditor's statement. Check the evidence and update affected views. If the agent cannot ground its feedback, mark the answer unresolved rather than grading from its own narrative.
 
 **Output:** reviewed corrections and a useful human-facing view; optional learner notes explicitly supplied by the auditor. **Next:** continue another lens or level, finish the current comprehension objective, or propose an investigation where useful.
 
@@ -128,7 +142,7 @@ The auditor's response can expose an agent error. Treat disagreement as a candid
 
 Close the flow with what was learned, its guarantee, remaining uncertainty and the next useful focus. An exploration may end with a better system model and no vulnerability hypothesis. When it suggests an investigation, the auditor authorizes that work through the existing small-batch decision; explaining a flow does not authorize a batch.
 
-Save an engagement bookmark: current flow and revision, key established points, unresolved premise, next step and links. At a later return, first show meaningful changes and what still holds. Offer a brief reconstruction if useful; reveal evidence immediately on request. A changed source/premise invalidates affected walkthroughs and diagrams as well as investigations.
+Save an engagement bookmark: current flow and revision, key established points, unresolved premise, next step and links. At a later return, first show meaningful changes and what still holds. Offer a brief reconstruction if useful; reveal evidence immediately on request. A changed source or premise re-runs the dependency probes of walkthroughs and diagrams as well as investigations. Each one becomes `affected`, `possibly_affected` or `carried_forward_mechanical`.
 
 The loop continues across flows. New findings may require relearning part of the system. Keep a concise “we previously thought → evidence now shows → therefore this changes” record rather than silently editing the old understanding out of history.
 
@@ -136,7 +150,7 @@ The loop continues across flows. New findings may require relearning part of the
 
 Model a flow as an abstraction over the relevant system state, parameterized by its subject: for example user, position, request ID or message ID. A node such as `claimable(request)` has a stated predicate over stores and environment; it need not correspond to a Solidity enum. A function is not automatically one transition, and an event is not automatically a persistent state. Record overlapping or incomplete predicates explicitly; do not imply a finite exhaustive model of the global EVM.
 
-These are proposed structured details of existing audit-unit/system-statement records, with the existing identity, provenance, revision, review and freshness fields:
+These are baseline structured details of existing audit-unit/system-statement records, with the existing identity, provenance, revision, review and freshness fields:
 
 | Element | Required semantic detail |
 |---|---|
@@ -156,11 +170,37 @@ Keep two linked views. The lifecycle view shows persistent states between transa
 
 A reverting call rolls back its effects and those of its descendants; the caller may handle failure and continue. An uncaught top-level execution failure rolls back the transaction's application effects, including its execution logs. Draw separate caught-failure and whole-execution rollback outcomes where relevant. Do not show a failed payout as a committed settlement, or claim a revert undoes earlier transactions or consumed gas. This is an application-state projection, not a claim that inclusion and fee accounting never occurred. [Solidity exceptions](https://docs.soliditylang.org/en/v0.8.30/control-structures.html#error-handling-assert-require-revert-and-exceptions), [EIP-140](https://eips.ethereum.org/EIPS/eip-140), [gas semantics](https://docs.soliditylang.org/en/v0.8.30/introduction-to-smart-contracts.html#gas).
 
+### Accounting view
+
+Lifecycle states do not capture numerical correctness. Accounting flows therefore also carry an accounting view, produced by the stores and transitions lenses rather than by a separate lens (FR-37):
+
+| Table | Required content |
+|---|---|
+| Value conservation | For each accounting flow, the relation that must hold before and after each transition. It covers assets in custody, claims, fees, debts and external balances, with any permitted loss or rounding bound |
+| Units and decimals | For each store, the unit and decimals of every quantity, its source (token, price feed or internal share) and every conversion that reads or writes it |
+| Rounding direction | For each arithmetic operation that converts or divides, the rounding direction and who benefits from it |
+
+Typical problems this view exposes:
+
+- `previewRedeem` rounding differently from `redeem`;
+- a first depositor inflating the share price through a donation;
+- a price feed whose decimals differ from the asset's.
+
+A discrepancy found here enters the ordinary comparison and investigation records.
+
 ### Composition across flows
 
 Connect flows through shared stores, permissions, triggers and assumptions. An upgrade changes code/delegation dependencies; a price update changes guards/calculations; a deposit changes accounting consumed by withdrawal. A proposed model needs those influences even if its first lesson follows one user's happy path.
 
 Explore bounded compositions selected by shared effects: both feasible transaction orders, a nested callback into a sibling flow, or request → external processing → later settlement. Represent asynchronous messages, time passage, oracle updates and off-chain actions as environment or separate-transaction transitions with provenance and trust/finality assumptions. Cross-transaction progress requires an explicit actor/trigger; eventual settlement is not inferred from a drawn arrow. Avoid eagerly expanding the Cartesian product of all flow states; retain cross-flow dependencies and mark unexplored compositions.
+
+Generate an interference matrix mechanically from the store map (FR-36). Its cells pair:
+
+- flows that write a shared store;
+- configuration writers with the flows that consume their values;
+- external callbacks with the entry points they can reenter.
+
+Each non-empty cell becomes a `composition` audit unit with its own review status. An unexplored composition therefore appears at closure as an unexamined unit, not merely as a note. System-wide invariants, such as solvency, conservation and queue liveness, become `system_invariant` units. Investigators receive every writer of the storage they read, not only the local code of their flow.
 
 ## Runnable and resumable explorations
 
@@ -178,7 +218,7 @@ Each step follows **show the current model → inspect or predict → seek evide
 
 Stop or checkpoint when the current objective is answered at its chosen resolution, the auditor redirects/pauses, available evidence ends, a material semantic question blocks this branch, or budget is exhausted. Record unresolved boundaries and the next discriminating check. Finishing a recipe does not mark a flow secure or all levels examined.
 
-On resume, validate snapshot/dependency freshness and show the last established point plus what changed. Preserve completed observations, fence stale work and rebase proposed deltas through existing revision controls. Changed input creates a linked continuation/run; do not overwrite the historical path. Waiting for an answer does not imply agreement; unrelated explorations can continue within authorization.
+On resume, validate snapshot/dependency freshness and show the last established point plus what changed. Preserve completed observations, dispatch no further work on the old premise, and rebase proposed deltas through existing revision controls. Changed input creates a linked continuation/run; do not overwrite the historical path. Waiting for an answer does not imply agreement; unrelated explorations can continue within authorization.
 
 ## Diagram lifecycle in the knowledge base
 
@@ -186,7 +226,13 @@ Every modeled flow has a diagram view and a textual state/transition table. Incl
 
 Generate diagrams from the structured flow/store/transition references, with editable layout kept separately from semantic records. The current repository's HTML/PNG presentation convention is a suitable initial rendering path; no new diagram vendor or graph database is required. Clicking/selecting a node or edge in a future interface opens sources, store effects, child refinements and the corresponding exploration recipe. Standalone exports supply equivalent links and readable tables.
 
-Store the rendering's dependency manifest and generation identity. Changed code, configuration, premise, state abstraction or referenced record marks dependent diagrams/walkthroughs stale. Regeneration produces a new view and a visible semantic delta; fresh rendering does not imply human re-review. Preserve older diagrams with their revision identity for comparison. Missing dependency edges require conservative wider review under the existing invalidation contract.
+Store the rendering's dependency manifest and generation identity, and record dependency probes for it like any other conclusion (FR-30). Code, configuration, a premise, the state abstraction or a referenced record can change. Each dependent diagram or walkthrough then becomes:
+
+- `affected` if a probe changed;
+- `possibly_affected` if no probe can tell;
+- `carried_forward_mechanical` if every probe is unchanged.
+
+Regeneration produces a new view and a visible semantic delta; fresh rendering does not imply human re-review. Preserve older diagrams with their revision identity for comparison. Dependencies that no probe observes are flagged under the [invalidation contract](harness-state-and-execution.md#evidence-invalidation-and-revision-changes).
 
 Diagram checks verify that displayed predicates/edges match the referenced records, failed paths are not drawn as successful completion, intermediate and committed states are labeled, the layout does not hide unknown branches, and child views have parent links. Visual clarity and semantic validity are separate checks.
 
@@ -207,15 +253,15 @@ Persist artifacts only when they support a decision, future retrieval, change de
 | Auditor walkthrough | A derived explanation/diagram with generation identity and exact record dependencies |
 | Exploration session and resume note | Recipe/version, current lens/focus/level, completed steps, deltas, pending decision and next action; links to durable evidence |
 
-The future engagement workspace can render these as reviewable repository documents, for example an index and one Markdown page per flow with source links. Filenames and serialization are illustrative; the canonical controller record remains authoritative if that architecture is adopted. Workers propose updates rather than editing accepted records or the immutable target checkout. Rebuilding a view must preserve dissent, review state and freshness.
+The future engagement workspace can render these as reviewable repository documents, for example an index and one Markdown page per flow with source links. Filenames and serialization are illustrative; the canonical controller record remains authoritative. Workers propose updates rather than editing accepted records or the immutable target checkout. Rebuilding a view must preserve dissent, review state and freshness.
 
-The design-lab repository stores this methodology and its research. Actual client/system knowledge belongs to its engagement, not this lab's PLUR store. No automatic cross-engagement or lab copying is introduced. Use keyword retrieval over IDs, symbols, domain terms, assets and flows; include contradiction, limits and stale status with each retrieved claim. Add indexing complexity only when demonstrated misses justify it.
+The design-lab repository stores this methodology and its research. Actual client/system knowledge belongs to its engagement, not this lab's PLUR store. No automatic cross-engagement or lab copying is introduced. The only cross-engagement source is the curated [mechanism library](harness-glossary.md#terms): engagements retrieve its admitted entries with their counterconditions as leads, and a lesson enters it only through the auditor's `record_transfer` decision (DEC-009, Q-022). Use keyword retrieval over IDs, symbols, domain terms, assets and flows; include contradiction, limits and freshness with each retrieved claim. Add indexing complexity only when demonstrated misses justify it.
 
 Presentation pacing and optional reconstruction need no permanent personal ability score. Store audit corrections, explicit preferences and ordinary progress when necessary for the engagement; do not infer or persist medical/attention profiles. Any later request for durable personalized learning requires its own scope and retention choice.
 
 ## Readiness and quality checks
 
-The accepted start policy is broad orientation followed by review of the relevant flow, with exploration continuing alongside investigation. For a named investigation, the detailed readiness checks below remain proposed:
+The accepted start policy is broad orientation followed by review of the relevant flow, with exploration continuing alongside investigation. The relevant-flow review is recorded, and `authorize_work` refuses a batch whose relevant flow has no recorded review (FR-32). For a named investigation, the detailed readiness checks below are baseline mechanisms rather than separately accepted decisions:
 
 1. The flow and relevant boundary/state dependencies are source-linked; unsupported areas are explicit.
 2. The relevant guarantee and consequential assumptions have the ordinary human review required by the existing design, or the investigation explicitly aims to resolve them and avoids dependent conclusions meanwhile.
@@ -252,16 +298,20 @@ The separate paused/unpaused configuration affects claim guards; it need not dup
 
 **Deeper lens and checkpoint.** The auditor chooses the transfer edge and asks for exact expressions, balance deltas, storage effects, then an instruction/trace view if needed and available. The recipe records the cursor, cited evidence or missing source, and the corrected abstraction. Optional prompt: “Which stores must agree before we call this settled?” A correct answer is a learning observation, not a finding approval.
 
-**Return later.** A changed pause rule or token premise marks affected transitions and diagrams stale. Reopening the saved exploration presents the previous belief and new evidence, then resumes at the affected edge. A proposed callback or failed-payout investigation enters the normal batch queue; the exploration itself grants no new execution authority.
+**Return later.** A changed pause rule or token premise re-runs the probes of the affected transitions and diagrams, which become `affected`. Reopening the saved exploration presents the previous belief and new evidence, then resumes at the affected edge. A proposed callback or failed-payout investigation enters the normal batch queue; the exploration itself grants no new execution authority.
 
 ## Evaluation and integration
 
-The [review's evaluation proposal](../research/comprehension-methodology-review.md#evaluation-recommendation) compares model quality and human understanding separately, with effort and preference retained. Add scenarios for a provisional seed with missing source, wrong storage owner, callback-visible intermediate state, caught versus propagated failure, time-derived state, cross-flow writer, interrupted refinement and stale diagram regeneration. These are proposed future checks, not tests executed in this specification repository.
+The [review's evaluation proposal](../research/comprehension-methodology-review.md#evaluation-recommendation) compares model quality and human understanding separately, with effort and preference retained. Add scenarios for a provisional seed with missing source, wrong storage owner, callback-visible intermediate state, caught versus propagated failure, time-derived state, cross-flow writer, interrupted refinement and regeneration of an `affected` diagram. These are future checks, not tests executed in this specification repository.
 
-This amendment elaborates FR-04/05/06/08/17/23/25 and NFR-08. Accepted DEC-005 requirements and the investigation-start policy are integrated into the product and auditor guide with their precise disposition. Detailed state/refinement, recipe/session and diagram lifecycle contracts remain proposed pending review; their adoption should extend the relevant record/view contracts, evaluation and completion matrix together. Preserve existing evidence-policy, authority, isolation and approved-batch rules.
+This amendment elaborates FR-04/05/06/08/17/23/25 and NFR-08. The 2026-10-12 amendment ties these mechanisms to FR-29–32, FR-34, FR-36–37 and FR-39–40, and to the DEC-008 freshness tiers. Accepted DEC-005 requirements and the investigation-start policy are integrated into the product and auditor guide with their precise disposition. Detailed state/refinement, recipe/session and diagram lifecycle contracts entered the accepted baseline with the architecture (DEC-009); refining them in the implementer package should extend the relevant record/view contracts, evaluation and completion matrix together. The DEC-009 amendment adds the optional expectations pre-step, derived intent timing and retrieval from the mechanism library. Preserve existing evidence-policy, authority, isolation and approved-batch rules.
 
 ## Operator choices
 
 **Interaction default, Q-009: resolved.** The operator selected **connected walkthrough, optional checkpoints** in DEC-005. The earlier prediction-first and briefing-first alternatives remain in the first-pass review for rationale; there is no need to ask this choice again.
 
 **Depth before investigations, Q-010: resolved.** The operator selected **A: start after broad orientation and review of the relevant flow**. Other flows and gaps remain visible, and exploration or deeper refinement continues alongside investigation. The alternative of reviewing all critical flows first is retained in the review rationale. This choice does not itself authorize work or accept every detailed readiness mechanism.
+
+**Expectations before the IMPLEMENTED walkthrough, Q-023: resolved.** The operator chose option A with the capture made optional ([DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md)). The aim is to keep intent from being anchored on the agent's account of the code. Before the walkthrough of a flow's implemented behavior, the auditor may record expectations in the [expectations pre-step](harness-glossary.md#terms). It is never required, including for critical flows; when it is skipped, the auditor reviews what the agents found. [Read-first mode](harness-glossary.md#terms) is also optional. The controller derives each auditor intent statement's timing, `before_walkthrough` or `after_walkthrough`, from capture times and the first recorded presentation of the unit's implemented behavior, and a comparison that relies on `after_walkthrough` intent shows the tag. The [adversarial review](../research/adversarial-design-review.md#ar-08--the-auditors-independent-read-is-displaced-by-the-agents-seed) raised the question.
+
+**Auditee documentation independence, Q-021: resolved.** The operator chose the origin label only ([DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md)). Auditee answers keep the `auditee_statement` origin, and documentation the auditee writes during the engagement is handled like other documentation under DEC-006's documentation-first rule. No communications log is kept, and known issues have no handling rule. This is an accepted residual risk: such documentation can mirror the code, so a comparison finds no discrepancy, and a real bug filed as a known issue may go uninvestigated.

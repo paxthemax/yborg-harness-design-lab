@@ -196,3 +196,165 @@
     and evaluation scenarios. Preserved consultation rationale and updated the
     handover. Reviewed memory: DEC-005 remains compatible, and earlier synthesis
     stays provisional. Overall architecture remains proposed. No runtime built.
+
+- id: EP-LAB-2026-1002-001
+  timestamp: '2026-10-02T08:32:45Z'
+  agent: codex
+  channel: design-lab-session
+  session_id: flow-diagram-review-2026-10-02
+  tags: [flow-imports, operator-decisions, scenario-loop, html, png]
+  summary: >-
+    Visually inspected and registered both new flow imports as SRC-033–034,
+    preserving their bytes and distinguishing unverified product claims.
+    Triaged ten issues in research/flow-diagram-review.md: eight direct
+    corrections in the synthesis and two consequential questions. The operator
+    selected agent scenario drafting/testing under approved questions and
+    constraints, then one combined human review after testing and agent
+    challenge, with earlier consequential interruptions. Recorded DEC-007,
+    resolved Q-012–013 and integrated the choices into the specification.
+    Created an ownership matrix, eight loop contracts, a standalone HTML
+    workflow and a visually inspected 2880 by 5700 PNG. Reviewed existing
+    memory against DEC-002/004/005/006 without changing those decisions;
+    captured accepted DEC-007 separately from unreviewed K-007 synthesis.
+    Updated the handover and source/diagram indexes. Detailed loop mechanics
+    and overall architecture remain proposed. No harness runtime was built
+    or tested. Timestamp records capture, not exact task completion.
+
+- id: EP-LAB-2026-1012-001
+  timestamp: '2026-10-12T07:28:22Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [adversarial-review, harness, open-questions, lab-integrity]
+  summary: >-
+    Performed the operator-requested adversarial design review of the harness
+    specification, recorded in research/adversarial-design-review.md. Four
+    passes (main thread, plus delegated red-team, specification-integrity and
+    practitioner-walkthrough reviewers) produced 29 findings, each re-verified
+    against file:line: three critical, fifteen high, ten medium and one low.
+    Registered Q-014 to Q-024 as open operator questions, of which Q-014 to
+    Q-020 bear on Q-008, and recorded K-008 and one engram as unreviewed
+    synthesis. Reported two lab-record issues: the uncommitted tree rewrites
+    the operator's line in imports/README.md with no record, and earlier
+    research records contain stale statements. No design document, decision
+    or earlier disposition was changed; specification fixes were listed but
+    not applied. No harness runtime was built or tested. The timestamp
+    records capture, not exact task completion.
+
+- id: EP-LAB-2026-1012-002
+  timestamp: '2026-10-12T07:47:01Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [operator-decisions, adversarial-review, dec-008]
+  summary: >-
+    Walked the operator through Q-014 to Q-020 and L-01 to L-02 in four
+    focused questionnaire rounds, each with options, trade-offs and a
+    recommendation. Answers: agent self-report (Q-014, against the
+    recommendation); broad default attacker with roles trusted (Q-015, partly
+    against); full impact scaling (Q-016); evidence first (Q-017); reuse the
+    agent tool with input captured outside the model (Q-018, a refinement
+    offered during the walkthrough); probes and tiers (Q-019); walking
+    skeleton (Q-020). The operator kept the revised imports/README.md wording
+    (L-01) and chose dated corrections (L-02). Recorded DEC-008, resolved the
+    seven questions, appended a disposition section to the review, qualified
+    K-008, cross-referenced DEC-003, appended dated corrections to three
+    research records and updated the handover. Q-021 to Q-024 and Q-008
+    remain open, and the specification documents are not yet integrated.
+    The timestamp records capture, not exact task completion.
+
+- id: EP-LAB-2026-1012-003
+  timestamp: '2026-10-12T08:34:00Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [specification-integration, dec-008, glossary, diagrams, verification]
+  summary: >-
+    On the operator's go-ahead, ran the coordinated specification pass
+    integrating DEC-008 and the review's fix-route findings. Added
+    design/harness-glossary.md. Updated the state and component contracts,
+    the requirements (FR-29 to FR-41 and NFR-14 to NFR-15 new, with amended
+    rows), the product proposal, auditor guide, loop register, comprehension
+    method and evaluation plan, and five diagram HTML sources, using four
+    parallel forks for the peripheral documents and diagrams. Re-exported
+    and visually inspected all PNGs, with the lifecycle and workflow
+    viewports raised after measuring content. Registered Q-025 and Q-026 as
+    open. A fresh-context consistency review found 20 problems, all fixed,
+    including a child-task definition that would have contradicted DEC-007.
+    Links, requirement IDs, the JSON example, HTML IDs and the memory YAML
+    pass inspection. The pass recorded several judgment calls for operator
+    review. Nothing was committed; no runtime was built. The timestamp is
+    approximate capture time.
+
+- id: EP-LAB-2026-1012-004
+  timestamp: '2026-10-12T10:37:00Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [operator-walkthrough, dec-009, q-008, architecture-acceptance]
+  summary: >-
+    At the operator's request, walked through the seven open questions in
+    four rounds, with Q-008 last. Each came with a one-sentence summary, a
+    plain-language explanation, options and a recommendation. Against the
+    recommendation, the operator chose B for Q-021, Q-024 and Q-025. They
+    chose A for Q-022 and Q-026, and A with optional capture for Q-023 in a
+    free-text answer. They then accepted Q-008 as amended. Recorded DEC-009,
+    marked DEC-003 accepted as amended, resolved the questions in the
+    register, revised ENG-LAB-2026-1012-003 and added two locked engrams. The
+    Q-024 explanation overstated the gap in the current comparison; it was
+    corrected in the next round, and the answer stood. The specification
+    documents are not yet updated, and nothing was committed. The timestamp
+    is approximate capture time.
+
+- id: EP-LAB-2026-1012-005
+  timestamp: '2026-10-12T11:19:00Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [specification-integration, dec-009, accepted-baseline, diagrams, verification]
+  summary: >-
+    On the operator's "Integrate pass OK", integrated DEC-009 into the
+    specification. The main thread settled the vocabulary in the glossary,
+    then updated the state and component contracts, the requirements (FR-42
+    and FR-43 new; FR-07, 24, 26 and 35 amended), the product proposal and
+    the completion audit. Two parallel forks updated the four prose documents
+    and the diagrams. The documents now carry an accepted-baseline status,
+    and the Q-021 and Q-024 accepted residual risks each have an evaluation
+    scenario. All PNGs were re-exported and visually inspected; the workflow
+    diagram is now 2880 by 6240. Links, requirement IDs and the JSON example
+    pass. A fresh-context consistency review then found ten problems. Nine
+    were fixed, including library decisions that could name a source
+    engagement, linked claims with no record of their own, and an
+    intent-timing anchor that missed the seed's diagrams. The tenth was
+    registered as Q-027. Several judgment calls are recorded in the handover.
+    Nothing was committed. The timestamp is approximate capture time.
+
+- id: EP-LAB-2026-1012-006
+  timestamp: '2026-10-12T13:27:00Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [operator-walkthrough, dec-010, q-027, linked-variants]
+  summary: >-
+    At the operator's request, recapped Q-027 in the walkthrough format with a
+    concrete example. The operator chose option B, "Proceed, flagged", against
+    the recommendation. Recorded DEC-010, then replaced the provisional option
+    A text from the DEC-009 pass in 12 files: linked variants may enter
+    unreviewed flows and the packet flags their claims. FR-32 was amended, and
+    DEC-005 and DEC-009 carry notes. No question in the register remains open.
+    Nothing was committed. The timestamp is approximate capture time.
+
+- id: EP-LAB-2026-1012-007
+  timestamp: '2026-10-12T13:47:00Z'
+  agent: claude
+  channel: design-lab-session
+  session_id: adversarial-design-review-2026-10-12
+  tags: [operator-confirmation, judgment-calls, commit]
+  summary: >-
+    The operator confirmed the judgment calls of both integration passes and
+    asked for everything to be committed ("Confirmed, commit all."). Recorded
+    the confirmation in DEC-009 and the handover. Committed the uncommitted
+    work of the 2026-10-02 and 2026-10-12 sessions as one commit on the new
+    branch design/accepted-baseline-2026-10-12, because master tracks a GitHub remote. The operator then
+    asked for it to be fast-forward merged into master and pushed. The
+    timestamp is approximate capture time.

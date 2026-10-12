@@ -1,6 +1,6 @@
 # Source register
 
-Registered: **2026-10-01**. Local inputs remain in `imports/`. Fingerprints identify the bytes inspected for this initial intake; preserve this observation if the file later changes.
+Initial registration: **2026-10-01**; additional flows inspected **2026-10-02**. Local inputs remain in `imports/`. Fingerprints identify the bytes inspected for the stated intake; preserve this observation if the file later changes.
 
 ## SRC-001 — Audit harness research
 
@@ -114,3 +114,27 @@ Accessed **2026-10-01** for the [second comprehension pass](../research/comprehe
 | SRC-032 | [EIP-140](https://eips.ethereum.org/EIPS/eip-140), motivation and specification | DOC; execution rollback including logs | Call/transaction outcomes still need target-specific propagation and handling analysis |
 
 **Intake disposition for SRC-029–032:** complete for the named semantics review. No runtime behavior, deployment mapping, formal refinement proof or diagram implementation was verified.
+
+## New audit flow diagrams
+
+Visually inspected **2026-10-02** for the [human/agent boundary and loop review](../research/flow-diagram-review.md). Original image bytes are preserved; [the simple manifest](../imports/flows/README.md) links the imports.
+
+### SRC-033 — Hybrid audit methodology
+
+- **Path:** [flow-hybridaudit.png](../imports/flows/flow-hybridaudit.png).
+- **Visible title:** “Agentic-Human Hybrid Methodology After yBorg Fellowship”.
+- **Class:** imported visual workflow reference.
+- **SHA-256:** `35165b85c8397b59f3df95206bbd1292bab8e81a84e183663aa015807f69fbfb`.
+- **Inspected locators:** human scoping, collaborative analysis/comprehension, agentic testing, human testing review, agentic evaluation, reporting; gaps/test-refinement/new-hypothesis arrows.
+- **Limits:** author, date, source URL and measured effectiveness are not established by the image. A “hybrid” label does not itself allocate decision authority.
+- **Intake:** full visual inspection for ownership, handoffs and repeated processes; F-01–10 record dispositions. Q-012–013 are operator choices in DEC-007, not source claims.
+
+### SRC-034 — GodAudit workflow
+
+- **Path:** [flow-godaudit.png](../imports/flows/flow-godaudit.png).
+- **Visible title:** “GodAudit — human × AI-swarm audit workflow”.
+- **Class:** imported visual workflow reference containing unverified product/tool and quantitative claims.
+- **SHA-256:** `1df4b3b68a7275f5c92ca568542cafaf95e9529903763f55058fd399370f29a6`.
+- **Inspected locators:** human scope/launch and review/file, phases 0–9, deterministic host rail, per-contract/finding repeats, PoC engine, fuzzing, adjudication exception and improvement return.
+- **Limits:** no external source URL/version/authorship verification or runtime evaluation. Agent counts, dataset sizes, tool integrations, enforced gate behavior and “ground truth” claims are not adopted as verified facts.
+- **Intake:** full visual inspection for ownership, handoffs and loops; reusable presentation ideas extracted, policy conflicts reconciled against accepted lab decisions. No strict phase pipeline, automatic finding authority, corpus or model-training work adopted.

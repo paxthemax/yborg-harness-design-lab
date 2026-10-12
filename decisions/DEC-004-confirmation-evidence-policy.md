@@ -21,3 +21,5 @@ Confirmation may therefore use an explicit human-approved argument when executio
 This choice does not waive clean replay for a finding presented as executably reproduced. It does not accept the whole architecture in DEC-003 or confer decision authority on an agent.
 
 **Supersedes:** none. **Affected records:** Q-007, the harness report contract, evidence acceptance and evaluation metrics. **Next action:** encode both evidence routes in any later implementation and show their counts separately during evaluation.
+
+**Later amendment, 2026-10-12:** [DEC-008](DEC-008-adversarial-review-dispositions.md) (Q-016) narrows where this exception applies. It now governs Medium and above, where a runnable PoC is impractical; Low/Info findings may be accepted on a code argument with source anchors. The record above is otherwise unchanged.

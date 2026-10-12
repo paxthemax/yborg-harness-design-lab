@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Human and agent audit workflow — ownership and loops</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --ink: #1c2d42; --muted: #53657a; --line: #c6d1df; --paper: #f6f8fc;
+      --human: #2859ba; --human-bg: #eff4ff; --agent: #087968; --agent-bg: #edf9f4;
+      --joint: #79529b; --joint-bg: #f6f0fb; --tool: #9a571b; --tool-bg: #fff7e9;
+      --loop: #7952ba; --loop-bg: #f7f2ff;
+    }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.45 Arial, Helvetica, sans-serif; }
+    main { max-width: 1440px; margin: auto; padding: 38px 42px 30px; }
+    header { margin-bottom: 26px; }
+    .eyebrow { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { font-size: 40px; letter-spacing: -1.3px; line-height: 1.1; margin: 10px 0 12px; }
+    .intro { max-width: 1100px; font-size: 18px; margin: 0 0 18px; color: var(--muted); }
+    .legend { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    .chip { display: inline-block; padding: 5px 12px; border: 1px solid currentColor; border-radius: 20px; font-size: 13px; font-weight: 700; }
+    .chip.human { color: var(--human); background: var(--human-bg); }
+    .chip.agent { color: var(--agent); background: var(--agent-bg); }
+    .chip.joint { color: var(--joint); background: var(--joint-bg); }
+    .chip.tool { color: var(--tool); background: var(--tool-bg); }
+    .chip.loop { color: var(--loop); background: var(--loop-bg); border-style: dashed; }
+    .policy { margin: 18px 0 0; background: #e9eef6; border-left: 4px solid #8093ae; border-radius: 0 7px 7px 0; padding: 12px 16px; font-size: 14px; }
+    .process { display: grid; grid-template-columns: 165px minmax(0, 1fr) 250px; column-gap: 24px; row-gap: 34px; position: relative; }
+    .node { grid-column: 2; border: 1.5px solid var(--line); border-left-width: 5px; border-radius: 12px; padding: 18px 22px; position: relative; background: white; min-width: 0; }
+    .node:not(.last)::after { content: '↓'; position: absolute; left: 50%; bottom: -32px; transform: translateX(-50%); color: #71839a; font-size: 28px; line-height: 29px; }
+    .node.human { background: var(--human-bg); border-color: #8eaade; border-left-color: var(--human); }
+    .node.agent { background: var(--agent-bg); border-color: #8dbfaf; border-left-color: var(--agent); }
+    .node.joint { background: var(--joint-bg); border-color: #c0a4d4; border-left-color: var(--joint); }
+    .node.mixed { background: #fff; border-left-color: #687e97; }
+    .stage { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .human .stage { color: var(--human); } .agent .stage { color: var(--agent); } .joint .stage { color: var(--joint); }
+    h2 { font-size: 23px; line-height: 1.18; margin: 0 0 8px; letter-spacing: -.35px; }
+    p { margin: 0; }
+    .node p { color: #354c63; }
+    .small { font-size: 14px; }
+    .handoff { padding-top: 10px; margin-top: 10px; border-top: 1px solid #cdd7e3; font-size: 14px; color: #344961; }
+    .loop-line { margin-top: 11px; color: var(--loop); font-size: 14px; font-weight: 700; }
+    .loop-id { display: inline-block; border: 1px dashed var(--loop); background: #fff; border-radius: 5px; padding: 1px 6px; color: var(--loop); font-size: 13px; font-weight: 700; margin-right: 5px; }
+    #scope { grid-row: 1; } #intake { grid-row: 2; } #lensing { grid-row: 3; } #batch { grid-row: 4; }
+    #scenario { grid-row: 5; } #review { grid-row: 6; } #report { grid-row: 7; } #learning { grid-row: 8; }
+    .scenario { padding: 0; border-color: #ae96d0; border-left-color: var(--loop); background: white; }
+    .scenario-head { background: #f0e9fa; padding: 17px 22px 15px; border-radius: 10px 10px 0 0; border-bottom: 1px solid #d7c5ec; }
+    .scenario-head .stage { color: var(--loop); }
+    .scenario-head h2 { margin-bottom: 6px; }
+    .scenario-head p { font-size: 14px; }
+    .scenario-body { padding: 17px 72px 16px 20px; position: relative; }
+    .substep { background: var(--agent-bg); border: 1px solid #acd0c1; border-radius: 8px; padding: 12px 15px; }
+    .substep h3 { font-size: 17px; margin: 0 0 5px; color: #145d52; }
+    .substep p { font-size: 15px; }
+    .substep.experiment { background: #f5f9f7; border-color: #b9c7ba; }
+    .substep .tool-label { color: var(--tool); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; }
+    .sub-arrow { text-align: center; line-height: 27px; height: 27px; color: #6f8293; font-size: 23px; }
+    .scenario-return { position: absolute; top: 42px; bottom: 84px; right: 20px; width: 34px; border: 2px dashed #9978c7; border-left: 0; border-radius: 0 10px 10px 0; }
+    .scenario-return::before { content: ''; position: absolute; top: -6px; left: -2px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 8px solid #9978c7; }
+    .scenario-return span { position: absolute; top: 50%; right: -10px; background: #fff; padding: 6px 3px; color: var(--loop); font-size: 12px; font-weight: 700; writing-mode: vertical-rl; }
+    .repeat { margin-top: 12px; color: var(--loop); font-size: 13px; font-weight: 700; }
+    .scenario-exit { padding: 12px 20px; border-top: 1px solid #d8c8eb; background: #faf8fd; border-radius: 0 0 10px 10px; font-size: 14px; }
+    .outcomes { display: grid; grid-template-columns: 1fr 1fr 1.15fr; gap: 8px; margin-top: 13px; }
+    .outcome { background: #fff; border: 1px solid #bfcee6; border-radius: 7px; padding: 10px; font-size: 13px; }
+    .outcome strong { display: block; color: var(--human); margin-bottom: 3px; font-size: 14px; }
+    .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 11px; }
+    .roles p { font-size: 14px; }
+    .roles strong { display: block; margin-bottom: 3px; }
+    .agent-text { color: var(--agent); } .human-text { color: var(--human); }
+    .side { grid-column: 3; align-self: start; border-radius: 10px; padding: 18px; font-size: 14px; background: #fff; border: 1px solid #d0d8e4; }
+    .side h3 { margin: 0 0 11px; font-size: 18px; line-height: 1.2; }
+    .side p + p { margin-top: 12px; }
+    .side .side-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 9px; }
+    .controls { grid-row: 1 / 4; background: var(--tool-bg); border: 1px dashed #c49360; }
+    .controls h3, .controls .side-label { color: var(--tool); }
+    .side-item { padding: 11px 0; border-top: 1px solid #ddcbb4; }
+    .side-item strong { display: block; margin-bottom: 4px; }
+    .truth { margin-top: 10px; padding: 11px; border: 1px solid #ddbb96; background: #fffdfa; border-radius: 7px; font-size: 13px; }
+    .changes { grid-row: 4 / 6; background: var(--loop-bg); border-color: #c8b5e0; }
+    .changes h3 { color: var(--loop); }
+    .route { padding: 10px 0; margin: 12px 0; border-top: 1px solid #d8c9eb; border-bottom: 1px solid #d8c9eb; font-weight: 700; color: #634391; }
+    .stops { grid-row: 6 / 9; }
+    .stops ul { padding-left: 18px; margin: 8px 0 12px; }
+    .stops li { margin: 6px 0; }
+    .lensing-return { grid-column: 1; grid-row: 3; align-self: center; padding: 10px 0; font-size: 13px; color: var(--loop); }
+    .lensing-return strong { display: block; font-size: 15px; margin: 5px 0; }
+    .return-track { grid-column: 1; position: relative; border: 2px dashed #9c7bc8; border-right: 0; border-radius: 14px 0 0 14px; margin-right: -24px; }
+    .return-track::before { content: ''; position: absolute; right: -1px; top: -6px; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid #9c7bc8; }
+    .track-l5 { grid-row: 4 / 7; margin-top: 43px; margin-bottom: 27px; margin-left: 10px; }
+    .track-l4 { grid-row: 5 / 7; margin-top: 75px; margin-bottom: 77px; margin-left: 89px; }
+    .return-label { position: absolute; background: var(--paper); color: var(--loop); font-size: 13px; padding: 12px 6px; width: 144px; }
+    .return-label strong { display: block; font-size: 16px; line-height: 1.2; margin: 5px 0; }
+    .return-label b { font-size: 14px; }
+    .track-l5 .return-label { left: -11px; top: 55px; }
+    .track-l4 .return-label { left: -66px; top: 94px; width: 136px; }
+    .return-label .endpoints { font-weight: 700; margin-top: 8px; }
+    .closing { margin: 27px 0 0; border-top: 1px solid #cbd5e2; padding-top: 17px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; font-size: 14px; color: var(--muted); }
+    .closing strong { color: var(--ink); }
+    footer { margin-top: 18px; display: flex; justify-content: space-between; gap: 20px; font-size: 12px; color: var(--muted); }
+    a { color: #345f9e; text-underline-offset: 2px; }
+    @media (max-width: 1050px) {
+      main { padding: 27px 20px; }
+      .process { grid-template-columns: 125px minmax(0, 1fr); gap: 32px 18px; }
+      .side { grid-column: 2; grid-row: auto; }
+      .track-l5 { margin-left: 0; } .track-l4 { margin-left: 60px; }
+      .return-track { margin-right: -18px; }
+      .return-label { width: 115px; font-size: 12px; }
+      .track-l4 .return-label { left: -55px; width: 115px; }
+      .return-label strong { font-size: 14px; }
+      .controls { grid-row: 9; } .changes { grid-row: 10; } .stops { grid-row: 11; }
+    }
+    @media (max-width: 650px) {
+      h1 { font-size: 31px; } .intro { font-size: 16px; }
+      .process { display: flex; flex-direction: column; gap: 32px; }
+      .node { padding: 17px; } .scenario { padding: 0; }
+      .node h2 { font-size: 21px; }
+      .scenario-head { padding: 16px; }
+      .scenario-body { padding: 16px 48px 16px 14px; }
+      .scenario-return { right: 11px; width: 22px; }
+      .scenario-return span { right: -9px; }
+      .substep { padding: 11px; }
+      .outcomes, .roles, .closing { grid-template-columns: 1fr; }
+      .lensing-return, .return-track { border: 1px dashed #b8a0d4; margin: 0; padding: 14px; border-radius: 9px; }
+      .return-track::before { display: none; }
+      .return-track .return-label { position: static; width: auto; padding: 0; }
+      .return-label strong { font-size: 17px; }
+      .side { padding: 17px; } footer { display: block; } footer span { display: block; margin-top: 8px; }
+    }
+    @media print { body { background: white; } main { max-width: none; } a { color: inherit; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Audit harness · Work ownership &amp; feedback paths</div>
+    <h1>Human direction. Agent investigation.</h1>
+    <p class="intro">One auditor sets the questions and constraints, builds shared understanding, and decides what the evidence establishes. Agents develop and test scenarios inside each approved batch.</p>
+    <div class="legend" aria-label="Actor and loop legend">
+      <span class="chip human">Human decision</span><span class="chip agent">Agent work</span>
+      <span class="chip joint">Joint exploration</span><span class="chip tool">Harness / tools</span>
+      <span class="chip loop">↺ L0–L7 · Repeated process</span>
+    </div>
+    <p class="policy"><strong>Accepted interaction · DEC-007 / DEC-008 / DEC-009:</strong> agents draft and test scenarios and declare their setup powers for challenger review; a follow-up into another guarantee that needs nothing new stays in the batch as a linked variant. The auditor reviews one combined packet after testing and challenge, with evidence first for potential High/Critical. Consequential questions interrupt earlier.</p>
+  </header>
+
+  <div class="process">
+    <section class="node human" id="scope">
+      <div class="stage">01 · Human</div><h2>Set scope and limits</h2>
+      <p>Select the target revision, threat model, permitted sources and tools, data policy, finite budget and evidence rules; narrow the broad default attacker charter and record that privileged roles are trusted.</p>
+    </section>
+
+    <section class="node agent" id="intake">
+      <div class="stage">02 · Agents</div><h2>Seed the engagement knowledge base</h2>
+      <p>Read documentation and code; map sources, dependencies and gaps. Seed separate provisional <strong>DESIGNED</strong> and <strong>IMPLEMENTED</strong> views.</p>
+      <div class="loop-line"><span class="loop-id">L0</span> Intake rounds · seed → reconcile → next named gap</div>
+      <div class="handoff">Exit with a useful or partial seed within the intake authorization. Seeded statements stay provisional; your answers are captured verbatim.</div>
+    </section>
+
+    <section class="node joint" id="lensing">
+      <div class="stage">03 · Human + agent</div><h2>Build shared understanding</h2>
+      <p><strong>Purpose → flows → stores → transitions.</strong> Compare DESIGNED with IMPLEMENTED at every lens; deepen selected paths and preserve unknowns. Your typed input is captured verbatim; agent interpretations count only after batched confirmation on the trusted decision screen. Optionally write your expectations for a flow before its walkthrough; intent recorded afterwards is tagged.</p>
+      <div class="loop-line"><span class="loop-id">L1</span> Comprehension loop · trace → challenge → reconcile → next focus</div>
+      <div class="handoff">Ready for investigation: broad orientation + review of the relevant flow.</div>
+    </section>
+
+    <section class="node human" id="batch">
+      <div class="stage">04 · Human, assisted by planner</div><h2>Authorize work</h2>
+      <p>Choose a small batch of investigation questions and guarantees; apply the engagement's attacker charter; set methods, permissions, budget and stop conditions. Agents may then develop the attack sequences.</p>
+      <div class="handoff">Hypotheses, property campaigns and scenarios share these gates; intake, exploration, revalidation and method evaluation have their own work authorization kinds. The scenario route is expanded below.</div>
+    </section>
+
+    <section class="node scenario" id="scenario">
+      <div class="scenario-head">
+        <div class="stage">05 · Agents, within the approved batch</div>
+        <h2><span class="loop-id">L2</span> Scenario loop</h2>
+        <p>Repeat for a useful variant of the approved investigation question, under the same constraints. A follow-up into another guarantee that needs nothing new stays here as a linked variant. Each variant is recorded with its outcome.</p>
+      </div>
+      <div class="scenario-body">
+        <article class="substep" id="scenario-draft">
+          <h3>05a · Draft and trace</h3>
+          <p>Build a causal attack sequence. Identify prerequisites, controlled actions, expected impact and the strongest countercondition. Declare the setup powers the fixture uses.</p>
+        </article>
+        <div class="sub-arrow" aria-hidden="true">↓</div>
+        <article class="substep experiment" id="scenario-probe">
+          <div class="tool-label">Agent prepares · harness executes</div>
+          <h3>05b · Probe the claim</h3>
+          <p>Derive checks from the approved meaning. Run permitted experiments and preserve commands, fixtures, traces and observed results.</p>
+          <div class="loop-line"><span class="loop-id">L3</span> Experiment loop</div>
+          <p class="small">Author → run → inspect → repair / minimize / next input → rerun. Stop at evidence, a blocker or the finite limit.</p>
+        </article>
+        <div class="sub-arrow" aria-hidden="true">↓</div>
+        <article class="substep" id="scenario-challenge">
+          <h3>05c · Challenge and refine</h3>
+          <p>Check reachability, attacker realism, declared setup powers, test adequacy and counterevidence. Arrange clean replay for executable confirmation.</p>
+        </article>
+        <div class="scenario-return" aria-hidden="true"><span>refine within grant</span></div>
+        <div class="repeat">↺ 05c → 05a · Next permitted variant and its distinguishing check</div>
+      </div>
+      <div class="scenario-exit"><strong>Exit → 06:</strong> a complete review packet listing every variant and failed attempt, or an explicit incomplete result.<br><strong>Interrupt:</strong> changed meaning, powers, scope or limits → human decision; changed revisions → L6.</div>
+    </section>
+
+    <section class="node human" id="review">
+      <div class="stage">06 · Human</div><h2>Review the combined evidence and decide</h2>
+      <p>Review the claim, scenario/test meaning, prerequisites, strongest evidence, verbatim counterargument, impact and remaining limits. For potential High/Critical, evidence comes before the agent's proposed verdict.</p>
+      <div class="outcomes">
+        <div class="outcome"><strong>Accept</strong>Human assigns severity. Medium+: clean replay or justified alternative evidence; Low/Info: code argument.</div>
+        <div class="outcome"><strong>Reject</strong>Decisive evidence and scope; for an executable claim at High/Critical, a guard-removed rerun must show the violation.</div>
+        <div class="outcome"><strong>No finding within bounds</strong>Examined within recorded bounds; never a refutation.</div>
+        <div class="outcome"><strong>Triaged out</strong>Low potential impact; one line; appendix only.</div>
+        <div class="outcome"><strong>Dispute or defer</strong>Stays unresolved and visible at closure.</div>
+        <div class="outcome"><strong>Request a check</strong>A specific distinguishing check via L4.</div>
+      </div>
+      <div class="handoff">Each decision is individual and bound to what the trusted screen displayed; rationale authorship is recorded.</div>
+    </section>
+
+    <section class="node mixed" id="report">
+      <div class="stage">07 · Agent drafting → human release</div><h2>Report findings and remaining exposure</h2>
+      <div class="roles">
+        <p><strong class="agent-text">Agents assemble</strong>Current decisions, non-broadcastable PoCs, evidence routes, unresolved concerns, assumptions and trust premises, and coverage per unit.</p>
+        <p><strong class="human-text">Auditor approves</strong>Report snapshot, audience and destination after the required-set check; close or explicitly stop with limitations.</p>
+      </div>
+      <div class="handoff">A new lead or report gap → L5. A report draft cannot create a finding.</div>
+    </section>
+
+    <section class="node mixed last" id="learning">
+      <div class="stage">08 · Agent capture → human adoption</div><h2><span class="loop-id">L7</span> Method improvement</h2>
+      <p>Capture grounded provisional lessons → propose and evaluate a change → human adopts or revises it → later authorized work. The auditor may transfer a sanitized lesson to the cross-engagement mechanism library.</p>
+      <div class="handoff">Capture may occur throughout. Use a finite evaluation allowance; preserve sources and prior method versions.</div>
+    </section>
+
+    <aside class="lensing-return" aria-label="Comprehension return">
+      <span class="loop-id">L1</span><strong>Revisit any lens</strong>Any stage → 03<br>New gap, correction or deeper exploration.
+    </aside>
+    <aside class="return-track track-l5" aria-label="L5 audit steering return from review to batch selection">
+      <div class="return-label"><span class="loop-id">L5</span><strong>Audit steering</strong>Review coverage and leads; approve the next batch.<div class="endpoints">06 / 07 → 04</div>Via 03 when understanding is missing.</div>
+    </aside>
+    <aside class="return-track track-l4" aria-label="L4 evidence follow-up from human review to investigation">
+      <div class="return-label"><span class="loop-id">L4</span><strong>Evidence follow-up</strong>A requested check within current authority.<div class="endpoints">06 → 05 → 06</div>Changed limits return to 04.</div>
+    </aside>
+
+    <aside class="side controls">
+      <div class="side-label">Across every stage</div><h3>Deterministic harness / tools</h3>
+      <div class="side-item"><strong>Enforce the boundary</strong>Current revisions, grants, budgets, permissions, review capacity and default-deny egress.</div>
+      <div class="side-item"><strong>Execute and record</strong>Isolated runs, exact inputs, raw results, receipts and partial failures.</div>
+      <div class="side-item"><strong>Check packets and decisions</strong>Packet completeness, display receipts and the evidence each disposition requires.</div>
+      <div class="side-item"><strong>Track dependencies</strong>Dependency probes, snapshot diffs, scenario lineage, history and freshness.</div>
+      <div class="truth"><strong>Receipt:</strong> what actually ran.<br><strong>Human judgment:</strong> what it establishes.<br>A passing process or model consensus cannot confirm a finding.</div>
+    </aside>
+
+    <aside class="side changes">
+      <span class="loop-id">L6</span><h3>Change and fix revalidation</h3>
+      <p><strong>Trigger at any stage:</strong> changed code, configuration, behavioral model or consequential premise.</p>
+      <div class="route">Register snapshot or premise<br>↓<br>Snapshot diff + probe re-runs<br>↓<br>Carried forward · affected · possibly affected<br>↓<br>04 · Authorize rechecks<br>↓<br>05 → 06 · Evidence + decision</div>
+      <p>Retain historical evidence and dispositions. Fix review checks the attack and legitimate behavior; new code in the diff needs its own review.</p>
+      <p>Unknown reach is flagged, not blocking. Unchanged probes carry forward under one labelled attestation. Re-rendering a diagram does not renew an approval.</p>
+    </aside>
+
+    <aside class="side stops">
+      <h3>Every loop has an exit</h3>
+      <p>Repeat for a named next check within an explicit allowance.</p>
+      <ul>
+        <li>Evidence is ready for review</li>
+        <li>No useful authorized next step</li>
+        <li>Missing premise or blocked tool</li>
+        <li>Budget / retry limit reached</li>
+        <li>Pause, cancel or affected inputs</li>
+      </ul>
+      <p><strong>Stopping is a work outcome.</strong> It cannot turn incomplete work into a refutation or a safety claim.</p>
+      <p><strong>The auditor can intervene at any time.</strong> Manual leads and tests enter the same evidence record.</p>
+    </aside>
+  </div>
+
+  <div class="closing">
+    <p><strong>Human attention:</strong> scope, relevant understanding, investigation questions and constraints, consequential clarifications, confirmation of interpretations, evidence decisions and release.</p>
+    <p><strong>Agent iteration:</strong> provisional knowledge, scenarios, tests, challenge, refinement and drafting. Each inner loop shares its parent's limits.</p>
+  </div>
+  <footer>
+    <span>2026-10-12 · DEC-002 / 004 / 005 / 006 / 007 / 008 / 009 · Accepted baseline; numeric limits remain proposals.</span>
+    <span><a href="../harness-workflow-loops.md">Loop register</a> · <a href="human-agent-audit-flow.png">PNG export</a> · <a href="index.html">Gallery</a></span>
+  </footer>
+</main>
+</body>
+</html>

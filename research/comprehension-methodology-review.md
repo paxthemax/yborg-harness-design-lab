@@ -149,3 +149,7 @@ Resolved routinely through the existing contracts: keep current statement kinds 
 ### Subsequent operator disposition
 
 After the second-pass report, the operator answered **“A”** to Q-010: investigations may start after broad orientation and review of the relevant flow, with exploration continuing alongside investigation and other gaps visible. [DEC-005](../decisions/DEC-005-comprehension-lensing.md) records this selection together with Q-009 and the lensing requirements. Accepted requirements and the start policy are integrated into the product and auditor guide. Detailed refinement, recipe/session and diagram lifecycle mechanisms remain proposed; the earlier open-question sections above preserve the review history.
+
+## Correction — 2026-10-12
+
+The current-disposition note at the top of this review says that Q-010 remains open. The operator resolved Q-010 with option A after the second pass, as recorded in [DEC-005](../decisions/DEC-005-comprehension-lensing.md) and in the [subsequent operator disposition](#subsequent-operator-disposition) above. The original note is preserved.

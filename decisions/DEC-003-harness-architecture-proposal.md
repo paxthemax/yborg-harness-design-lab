@@ -1,6 +1,6 @@
 # DEC-003 Harness architecture proposal
 
-Status: **proposed**. Date: **2026-10-01**. Decision owner: **lab operator**. This record proposes the architecture; the narrower choices in [DEC-002](DEC-002-harness-operating-envelope.md) and [DEC-004](DEC-004-confirmation-evidence-policy.md) have been accepted.
+Status: **accepted as amended** on 2026-10-12 in [DEC-009](DEC-009-architecture-acceptance-and-remaining-dispositions.md); proposed 2026-10-01. Decision owner: **lab operator**. This record proposed the architecture; the narrower choices in [DEC-002](DEC-002-harness-operating-envelope.md) and [DEC-004](DEC-004-confirmation-evidence-policy.md) had already been accepted. The sections below are preserved as proposed, and the amendments are in [DEC-008](DEC-008-adversarial-review-dispositions.md) and DEC-009.
 
 ## Decision to consider
 
@@ -28,9 +28,9 @@ The [component contracts](../design/harness-interface-contracts.md) and [auditor
 
 ## Disposition and next action
 
-- **Accepted architecture:** none yet.
+- **Accepted architecture:** the evidence workbench, as amended by DEC-008 and DEC-009. As amended, persistence starts as Git-backed append-only records with schema validation, and a transactional store is a deferred mechanism (DEC-008, Q-020).
 - **Recommendation author:** Codex, based on the recorded research and operator constraints.
-- **Operator decision/date:** pending.
-- **Related questions:** Q-007 resolved in DEC-004 for alternative evidence policy; Q-008 remains open for the architecture proposal.
+- **Operator decision/date:** “Accept as amended”, 2026-10-12, recorded in DEC-009 with what acceptance covers and excludes.
+- **Related questions:** Q-007 resolved in DEC-004 for alternative evidence policy; Q-008 was resolved in DEC-009 on 2026-10-12. Q-014–020, resolved in [DEC-008](DEC-008-adversarial-review-dispositions.md) on 2026-10-12, set constraints the architecture incorporated before Q-008 was decided: agent self-report for scenario changes, a broad default attacker, impact-scaled dispositions, evidence-first packets, captured human input, dependency probes and a walking-skeleton build order.
 - **Supersedes:** none. DEC-001 remains the accepted lab memory policy; DEC-002 remains the accepted harness operating envelope.
-- **Next action:** operator review of the proposed product and consequences, followed by a recorded acceptance, amendment or rejection. Runtime framework/tool selection follows compatibility and recovery trials if implementation is later authorized.
+- **Next action:** prepare the implementer package; DEC-009 is integrated into the specification documents. Runtime framework/tool selection follows compatibility and recovery trials if implementation is later authorized.

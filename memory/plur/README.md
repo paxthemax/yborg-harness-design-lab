@@ -4,7 +4,7 @@ This directory contains **PLUR-format data** for the selected lab memory policy.
 
 ## Files and seed authority
 
-- `engrams.yaml`: eleven memories grounded in explicit repository/operator instructions and decisions, one unreviewed imported recommendation, and four unreviewed source-backed design lessons.
+- `engrams.yaml`: fourteen memories grounded in explicit repository/operator instructions and decisions, one unreviewed imported recommendation, and six unreviewed source-backed design lessons.
 - `episodes.yaml`: timestamped records of scope clarifications, deliveries, and operator decisions, with source paths in their summaries.
 - `config.yaml`: keyword retrieval, automatic learning/capture enabled, and no remote stores.
 - Future `history/`: PLUR observational and lifecycle events, retained with the store when the engine is connected.

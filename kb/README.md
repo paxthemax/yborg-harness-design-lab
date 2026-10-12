@@ -15,16 +15,25 @@ This is the lab's map of research and design knowledge. Start with the [harness 
 | [K-005](claims/K-005-property-adequacy.md) | Property adequacy differs from tool success |
 | [DEC-001](../decisions/DEC-001-knowledge-and-memory.md) | Accepted storage, learning, and retrieval choices |
 | [DEC-002](../decisions/DEC-002-harness-operating-envelope.md) and [DEC-004](../decisions/DEC-004-confirmation-evidence-policy.md) | Accepted harness envelope and alternative evidence policy |
-| [DEC-005](../decisions/DEC-005-comprehension-lensing.md) | Accepted walkthrough default, repeatable state-machine lensing requirements and investigation-start policy; detailed method remains under review |
-| [DEC-003](../decisions/DEC-003-harness-architecture-proposal.md) | Proposed architecture, options and rationale |
-| [Question register](questions.md) | Accepted choices and proposed architecture review |
+| [DEC-005](../decisions/DEC-005-comprehension-lensing.md) | Accepted walkthrough default, repeatable state-machine lensing requirements and investigation-start policy; the detailed method entered the accepted baseline with DEC-009 |
+| [DEC-003](../decisions/DEC-003-harness-architecture-proposal.md) | Architecture accepted as amended on 2026-10-12, with its options and rationale |
+| [Question register](questions.md) | Operator questions with their answers; Q-001–027 are resolved |
 | [Harness sprint](../research/harness-design-sprint.md) | Report and diagram extraction, primary research, trade-offs and walkthroughs |
 | [Component contracts](../design/harness-interface-contracts.md) and [auditor guide](../design/harness-auditor-guide.md) | Integration boundaries, artifact handoff and the complete human workflow |
 | [Specification completion audit](../research/harness-specification-completeness.md) | Coverage of the repository scope, accepted choices, and every functional/non-functional requirement |
 | [Comprehension review](../research/comprehension-methodology-review.md) and [lensing method](../design/harness-comprehension-method.md) | Two Astra Max passes on agent knowledge construction and auditor internalization; Q-009–010 resolved |
 | [K-006](claims/K-006-comprehension-and-evidence.md) | Model support, human understanding and security adjudication are distinct outcomes |
+| [K-007](claims/K-007-loop-boundaries.md) | Repeated processes need distinct authority boundaries, outputs and finite exits |
+| [SRC-033–034](sources.md#new-audit-flow-diagrams) and [flow review](../research/flow-diagram-review.md) | Two new imported workflows, their ownership differences and ten triaged issues |
+| [DEC-007](../decisions/DEC-007-human-agent-workflow.md) and [workflow/loop register](../design/harness-workflow-loops.md) | Accepted agent scenario authorship and combined human review; eight labeled loops and an HTML/PNG diagram |
+| [Adversarial design review](../research/adversarial-design-review.md) and [Q-014–024](questions.md#q-014--mechanical-envelope-for-agent-authored-scenarios) | 2026-10-12: 29 findings verified across four passes, and eleven operator questions (Q-014–020 answered in DEC-008, Q-021–026 in DEC-009). Its two lab-record issues are also resolved |
+| [DEC-008](../decisions/DEC-008-adversarial-review-dispositions.md) | Accepted answers to Q-014–020: agent self-report for scenario changes, a broad default attacker with trusted roles, impact-scaled dispositions, evidence-first packets, captured human input, dependency probes and a walking-skeleton build order. It also records the L-01/L-02 dispositions |
+| [DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md) | Accepts the architecture as amended (Q-008), and answers Q-021–026: client origin label only, a cross-engagement mechanism library with recorded transfers, an optional expectations pre-step with intent timing, the current adoption comparison, no urgent-disclosure path, and cross-guarantee follow-ups inside the batch |
+| [DEC-010](../decisions/DEC-010-linked-variants-into-unreviewed-flows.md) | Q-027: a linked variant may enter a flow the auditor has not reviewed, and the packet flags its claims |
+| [K-008](claims/K-008-unenforced-semantic-gates.md) | A gate is unenforced when only the agent it constrains detects its crossing |
+| [Harness glossary](../design/harness-glossary.md) | 2026-10-12: canonical terms, stage numbering, value tables and the impact-scaled disposition table used across the specification |
 
-The three reports were read and all eleven diagrams visually inspected for the harness sprint. Selected external citations were checked; the register identifies exactly which ones and their limits. This is selective extraction, not exhaustive revalidation of every imported assertion. The primary harness architecture remains proposed.
+The three reports were read and all eleven original diagrams visually inspected for the harness sprint. Two additional flow diagrams were inspected on 2026-10-02 for the ownership/loop review. Selected external citations from earlier research were checked; the register identifies exactly which ones and their limits. This is selective extraction, not exhaustive revalidation of every imported assertion. The primary harness architecture was accepted as amended on 2026-10-12 ([DEC-009](../decisions/DEC-009-architecture-acceptance-and-remaining-dispositions.md)).
 
 ## How to add knowledge
 
